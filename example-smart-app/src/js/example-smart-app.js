@@ -29,12 +29,21 @@
           var gender = patient.gender;
 
           var fname = '';
-          var lname = '';
+            var lname = '';
+            var phone = '';
+            var email = '';
 
           if (typeof patient.name[0] !== 'undefined') {
             fname = patient.name[0].given.join(' ');
             lname = patient.name[0].family.join(' ');
-          }
+            }
+
+            if (typeof patient.telecom[0] !== 'undefined') {
+                phone = patient.telecom[0].value;                
+            }
+            if (typeof patient.telecom[1] !== 'undefined') {
+                email = patient.telecom[1].value;
+            }
 
           var height = byCodes('8302-2');
           var systolicbp = getBloodPressureValue(byCodes('55284-4'),'8480-6');
@@ -46,7 +55,9 @@
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
-          p.lname = lname;
+            p.lname = lname;
+            p.phone = phone;
+            p.email = email;
           p.height = getQuantityValueAndUnit(height[0]);
 
           if (typeof systolicbp != 'undefined')  {
@@ -75,7 +86,9 @@
   function defaultPatient(){
     return {
       fname: {value: ''},
-      lname: {value: ''},
+        lname: { value: '' },
+        phone: { value: '' },
+        email: { value: '' },
       gender: {value: ''},
       birthdate: {value: ''},
       height: {value: ''},
@@ -118,7 +131,9 @@
     $('#holder').show();
     $('#loading').hide();
     $('#fname').html(p.fname);
-    $('#lname').html(p.lname);
+      $('#lname').html(p.lname);
+      $('#phone').html(p.phone);
+      $('#email').html(p.email);
     $('#gender').html(p.gender);
     $('#birthdate').html(p.birthdate);
     $('#height').html(p.height);
