@@ -245,8 +245,7 @@
                       console.log(data);
                       if (data.data.records != null) {
 
-                          $("#CRMpatietid").val(data.data.records);
-                          debugger;
+                          $("#CRMpatietid").val(data.data.records.patientId);
                           CreateCarePlan(data.data.records.patientId);
                           
                       }
