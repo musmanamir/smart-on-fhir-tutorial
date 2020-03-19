@@ -1303,7 +1303,7 @@
             case 6: return "../webresources/msemr_ProceduresSVG";
             case 7: return "../webresources/msemr_ReferralRequestsSVG";
             case 8: return "../webresources/msemr_EncountersSVG";
-            case 9: return "../webresources/msemr_careplanSVG";
+            case 9: return "../images/msemr_careplanSVG";
             case 10: return "../webresources/msemr_CarePlanGoalSVG";
             default: return "../webresources/msemr_AppointmentsEMRSVG";
         }
