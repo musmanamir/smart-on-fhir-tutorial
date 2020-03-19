@@ -246,8 +246,8 @@
                       if (data.data.records != null) {
 
                           $("#CRMpatietid").val(data.data.records);
-
-                          CreateCarePlan(data.data.records);
+                          debugger;
+                          CreateCarePlan(data.data.records.patientId);
                           
                       }
 
@@ -263,13 +263,12 @@
 
           function CreateCarePlan(patientid) {
               var data = {}
-              var patientCarePlan = {}
-
-              patientCarePlan.PatientID = patientid;
+              var patientCarePlan = {}             
               patientCarePlan.Title = $("#fname").text() + " Care Plan";
               patientCarePlan.Description = $("#fname").text() + " Care Plan";
               patientCarePlan.STartDate = "03/19/2020";
               patientCarePlan.EndDate = "03/19/2020";
+              patientCarePlan.PatientID = patientid;
 
               data.patientCarePlan = patientCarePlan;
 
