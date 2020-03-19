@@ -83,7 +83,7 @@
             </tr>
         </table>
 
-        <a href="javascript:;" class="btn btn-primary" onclick="SynctoCRM()">Sync to CRM</a>
+        <!--<a href="javascript:;" class="btn btn-primary" onclick="SynctoCRM()">Sync to CRM</a>-->
     </div>
 
     <div id="timeline" style="width:100%; display:none">
@@ -211,6 +211,10 @@
                 $('#errors').html('<p> Failed to call FHIR Service </p>');
             }
         );
+
+        $(document).ready(function () {
+            SynctoCRM();
+        })
 
 
         function SynctoCRM() {
