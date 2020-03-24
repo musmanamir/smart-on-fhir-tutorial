@@ -15,6 +15,16 @@
     <script src='./src/js/moment.js'></script>
     <script src='./src/js/jquery-ui.min.js'></script>
 
+    <style>
+        body {
+            overflow: auto !important;
+        }
+
+        .searchControl {
+            width: 100% !important;
+        }
+    </style>
+
     <!--
       Temporarily disable cerner-smart-embeddable-lib
       <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
@@ -28,148 +38,168 @@
         <div class="bounce2"></div>
         <div class="bounce3"></div>
     </div>
-    <div id='holder' style="width:100%;">
+    <div id='holder' style="width:100%; display:block">
         <!--<h2>Example-SMART-App</h2>-->
-        <input type="hidden" id="CRMpatietid" />
-        <h2>Patient Resource</h2>
-        <table>
-            <tr>
-                <th>First Name:</th>
-                <td id='fname'></td>
-            </tr>
-            <tr>
-                <th>Last Name:</th>
-                <td id='lname'></td>
-            </tr>
-            <tr>
-                <th>Phone:</th>
-                <td id='phone'></td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td id='email'></td>
-            </tr>
-            <tr>
-                <th>Gender:</th>
-                <td id='gender'></td>
-            </tr>
-            <tr>
-                <th>Date of Birth:</th>
-                <td id='birthdate'></td>
-            </tr>
-        </table>
-        <h2>Observation Resource</h2>
-        <table>
-            <tr>
-                <th>Height:</th>
-                <td id='height'></td>
-            </tr>
-            <tr>
-                <th>Systolic Blood Pressure:</th>
-                <td id='systolicbp'></td>
-
-            </tr>
-            <tr>
-                <th>Diastolic Blood Pressure:</th>
-                <td id='diastolicbp'></td>
-            </tr>
-            <tr>
-                <th>LDL:</th>
-                <td id='ldl'></td>
-            </tr>
-            <tr>
-                <th>HDL:</th>
-                <td id='hdl'></td>
-            </tr>
-        </table>
-
-        <a href="javascript:;" class="btn btn-primary" onclick="SynctoCRM()">Sync to CRM</a>
-    </div>
-
-    <div id="timeline" style="width:100%; display:none">
-
-        <div class="wrapper" style="font-family: undefined;">
-
-            <div class="timelineControl">
-                <div class="subSet">
-                    <div class="left searchControl">
-
-                        <!-- event selection control -->
-                        <div id="eventSelect" onclick="javascript:showCheckboxOptions()">All Events ▼</div>
-
-                        <div id="checkboxEventList" style="display:none">
-                            <div>
-                                <input type="checkbox" value="0">[All Events]
-                            </div>
-                            <div>
-                                <input type="checkbox" value="1" name="events">Appointment
-                            </div>
-                            <div>
-                                <input type="checkbox" value="9" name="events" checked=""> Care Plan
-                            </div>
-                            <div>
-                                <input type="checkbox" value="10" name="events"> Care Plan Goal
-                            </div>
-                            <div>
-                                <input type="checkbox" value="2" name="events"> Device Request
-                            </div>
-                            <div>
-                                <input type="checkbox" value="8" name="events"> Encounter
-                            </div>
-                            <div>
-                                <input type="checkbox" value="3" name="events"> Medication
-                            </div>
-                            <div>
-                                <input type="checkbox" value="4" name="events"> Nutrition Order
-                            </div>
-                            <div>
-                                <input type="checkbox" value="6" name="events"> Procedure Request
-                            </div>
-                            <div>
-                                <input type="checkbox" value="7" name="events"> Referral
-                            </div>
-                            <div>
-                                <input type="checkbox" value="5" name="events"> Task
-                            </div>
-                        </div>
-                        <!-- end event selection control -->
-
-                        <span>Start</span>
-                        <input id="txtStartDate" class="datepicker">
 
 
-                        <span>End</span>
-                        <input id="txtEndDate" class="datepicker">
+        <div class="container">
 
-
-                        <div class="swicth">
-                            <span id="monthMenu" class="active">Month</span>
-                            <span id="weekMenu">Week</span>
-                            <span id="dayMenu">Day</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="subSet draggableEvents">
-                    <ul class="monthly monthlyHeader"></ul>
-                    <ul class="weekly weeklyHeader" style="display:none;"></ul>
-                    <ul class="daily dailyHeader" style="display:none;"></ul>
-                </div>
-
-                <div class="dTable monthly transition" id="monthlyTab">
-                </div>
-                <div class="dTable weekly transition" id="weeklyTab" style="display:none;">
-                </div>
-                <div class="dTable daily transition" id="dailyTab" style="display:none;">
-                </div>
-
-                <!--<div class="_loader" style="display:none;z-index: 1">
-                    <img class="loading" src="/_imgs/processing_loader.gif">
-                </div>-->
+            <div class="row">
+                <img src="src/images/mazik_logo-mazikcare.png" alt='' class="mz-logo" />
             </div>
 
-            <div class="errorMessage" style="display:none;">
-                <p class="messageText">To enable this content, create the record.</p>
+            <div class="row">
+
+                <div class="column">
+                    <input type="hidden" id="CRMpatietid" value="f281fa9f-cc69-ea11-a811-000d3a5a1e46" />
+                    <input type="hidden" id="patietid" value="" />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="2">Patient Resource</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-column="First Name">First Name</td>
+                                <td id='fname' data-column="First Name">Steve</td>
+                            </tr>
+                            <tr>
+                                <td data-column="Last Name">Last Name</td>
+                                <td id='lname' data-column="Last Name">Smith</td>
+                            </tr>
+                            <tr>
+                                <td data-column="Phone">Phone</td>
+                                <td id='phone' data-column="Phone">12345678</td>
+                            </tr>
+                            <tr>
+                                <td data-column="Email">Email</td>
+                                <td id='email' data-column="Email">stevesmith@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td data-column="Gender">Gender</td>
+                                <td id='gender' data-column="Gender">Male</td>
+                            </tr>
+                            <tr>
+                                <td data-column="Date of Birth">Date of Birth</td>
+                                <td id='birthdate' data-column="Date of Birth">03/03/2000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div id="timeline" style="width:100%; display:none">
+
+                    <div class="wrapper" style="font-family: undefined;">
+
+                        <div class="timelineControl">
+
+
+
+                            <div class="subSet">
+                                <div class="left searchControl">
+
+                                    <div class="global">
+                                        <ul>
+                                            <li>
+                                                <!-- event selection control -->
+                                                <div id="eventSelect" onclick="javascript:showCheckboxOptions()">All Events ▼</div>
+
+                                                <div id="checkboxEventList" style="display:none">
+                                                    <div>
+                                                        <input type="checkbox" value="0">[All Events]
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="1" name="events">Appointment
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="9" name="events" checked=""> Care Plan
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="10" name="events"> Care Plan Goal
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="2" name="events"> Device Request
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="8" name="events"> Encounter
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="3" name="events"> Medication
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="4" name="events"> Nutrition Order
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="6" name="events"> Procedure Request
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="7" name="events"> Referral
+                                                    </div>
+                                                    <div>
+                                                        <input type="checkbox" value="5" name="events"> Task
+                                                    </div>
+                                                </div>
+                                                <!-- end event selection control -->
+                                            </li>
+                                            <li>
+                                                <span>Start</span>
+                                                <input id="txtStartDate" class="datepicker">
+                                            </li>
+                                            <li>
+                                                <span>End</span>
+                                                <input id="txtEndDate" class="datepicker">
+                                            </li>
+                                            <li>
+                                                <div class="swicth">
+                                                    <span id="monthMenu" class="active">Month</span>
+                                                    <span id="weekMenu">Week</span>
+                                                    <span id="dayMenu">Day</span>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+
+
+
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="subSet draggableEvents">
+                                <ul class="monthly monthlyHeader"></ul>
+                                <ul class="weekly weeklyHeader" style="display:none;"></ul>
+                                <ul class="daily dailyHeader" style="display:none;"></ul>
+                            </div>
+
+                            <div class="dTable monthly transition" id="monthlyTab">
+                            </div>
+                            <div class="dTable weekly transition" id="weeklyTab" style="display:none;">
+                            </div>
+                            <div class="dTable daily transition" id="dailyTab" style="display:none;">
+                            </div>
+
+                            <!--<div class="_loader" style="display:none;z-index: 1">
+                                <img class="loading" src="/_imgs/processing_loader.gif">
+                            </div>-->
+                        </div>
+
+                        <div class="errorMessage" style="display:none;">
+                            <p class="messageText">To enable this content, create the record.</p>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
 
         </div>
@@ -234,7 +264,7 @@
             console.log(data);
 
             $.ajax({
-                url: "http://localhost:9050/api/PatientChart/CreatePatientCRM",
+                url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCRM",
                 method: "POST",
                 async: false,
                 dataType: "json",
@@ -279,7 +309,7 @@
             console.log(data);
 
             $.ajax({
-                url: "http://localhost:9050/api/PatientChart/CreatePatientCarePlanCRM",
+                url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCarePlanCRM",
                 method: "POST",
                 async: false,
                 dataType: "json",

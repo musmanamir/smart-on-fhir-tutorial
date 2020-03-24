@@ -50,7 +50,8 @@ body {
 /* Reset */
 
 .wrapper {
-    padding: 10px 0;
+    /* padding: 10px 0; */
+    padding: 10px;
     overflow: hidden;
 }
 
@@ -90,8 +91,8 @@ body {
 }
 
     .searchControl input.datepicker {
-        border: 2px solid #c3c3c3;
-        padding: 2px 5px;
+        border: 2px solid #ccc;
+        padding: 10px 5px;
         min-height: 24px;
         box-sizing: border-box;
         border-radius: 2px;
@@ -109,7 +110,7 @@ body {
 
     .searchControl input[type=text], .searchControl input[type=date], .searchControl select {
         border: 2px solid;
-        padding: 2px 5px;
+        padding: 10px 5px;
         min-height: 28px;
         box-sizing: border-box;
         border-radius: 2px;
@@ -117,8 +118,8 @@ body {
     }
 
     .searchControl #eventSelect {
-        padding: 2px 5px;
-        border: 2px solid #c3c3c3;
+        padding: 10px 5px;
+        border: 2px solid #ccc;
         box-sizing: border-box;
         display: inline-flex;
         font-family: "Roboto", sans-serif;
@@ -127,7 +128,7 @@ body {
     }
 
     .searchControl #checkboxEventList {
-        border: 2px solid #c3c3c3;
+        border: 2px solid #ccc;
         border-radius: 10px;
         width: 10rem;
         background: white;
@@ -158,14 +159,16 @@ body {
         }
 
             .searchControl .swicth > span.active {
-                border: 2px solid #c3c3c3;
-                background-color: #c3c3c3;
-                color: #404040;
+                border: 2px solid #3185e8;
+                background-color: #3185e8;
+                color: #fff;
+                border-radius: 4px;
             }
 
 .draggableEvents {
     margin-top: 10px;
     height: 54px;
+    border-bottom: 3px solid #3185e8;
 }
 
     .draggableEvents ul {
@@ -270,7 +273,8 @@ body {
         .dTable .rowFlex .cellFlex .note {
             position: absolute;
             top: 3px;
-            left: 32px;
+            /* left: 32px; */
+            left: 0;
             width: 100%;
             z-index: 10;
         }
@@ -424,3 +428,381 @@ button.ui-datepicker-trigger {
         width: calc(40% + 56px)
     }
 }
+
+/*** Asif ***/
+
+.container {
+    background: #f1f0f0;
+    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 1248px;
+    /* padding: 20px 0 0; */
+    padding: 0;
+    width: 90%;
+    min-width: 300px;
+}
+
+    .container .column {
+        background: #fff;
+        border-radius: 4px;
+        box-sizing: border-box;
+        color: #fff;
+        float: left;
+        margin-bottom: 20px;
+        margin-left: 0.6665%;
+        margin-right: 0.6665%;
+        padding: 1em 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    .container .row {
+        float: left;
+        margin-bottom: 0px;
+        width: 100%;
+    }
+
+@media (min-width: 767px) {
+    .container .column {
+        margin-bottom: 0px;
+    }
+
+        .container .column:first-child {
+            margin-left: 0;
+        }
+
+        .container .column:last-child {
+            margin-right: 0;
+        }
+
+    .container .row {
+        /* margin-bottom: 20px; */
+        margin-bottom: 0;
+    }
+
+    .container .column.one {
+        width: 5%;
+    }
+
+    .container .column.two {
+        width: 11.333%;
+    }
+
+    .container .column.three {
+        width: 17.666%;
+    }
+
+    .container .column.four {
+        width: 23.999%;
+    }
+
+    .container .column.five {
+        width: 30.333%;
+    }
+
+    .container .column.six {
+        width: 36.666%;
+    }
+
+    .container .column.seven {
+        width: 42.999%;
+    }
+
+    .container .column.eight {
+        width: 49.333%;
+    }
+
+    .container .column.nine {
+        width: 55.666%;
+    }
+
+    .container .column.ten {
+        width: 61.999%;
+    }
+
+    .container .column.eleven {
+        width: 68.333%;
+    }
+
+    .container .column.twelve {
+        width: 74.666%;
+    }
+
+    .container .column.thirteen {
+        width: 80.999%;
+    }
+
+    .container .column.fourteen {
+        width: 87.333%;
+    }
+
+    .container .column.fifteen {
+        width: 93.666%;
+    }
+
+    .container .column.sixteen {
+        width: 100%;
+    }
+
+    .container .column.offset-one {
+        margin-left: 6.333%;
+    }
+
+    .container .column.offset-two {
+        margin-left: 12.666%;
+    }
+
+    .container .column.offset-three {
+        margin-left: 18.999%;
+    }
+
+    .container .column.offset-four {
+        margin-left: 25.222%;
+    }
+
+    .container .column.offset-five {
+        margin-left: 31.666%;
+    }
+
+    .container .column.offset-six {
+        margin-left: 37.999%;
+    }
+
+    .container .column.offset-seven {
+        margin-left: 44.222%;
+    }
+
+    .container .column.offset-eight {
+        margin-left: 50.666%;
+    }
+
+    .container .column.offset-nine {
+        margin-left: 56.999%;
+    }
+
+    .container .column.offset-ten {
+        margin-left: 63.222%;
+    }
+
+    .container .column.offset-eleven {
+        margin-left: 69.666%;
+    }
+
+    .container .column.offset-twelve {
+        margin-left: 75.999%;
+    }
+
+    .container .column.offset-thirteen {
+        margin-left: 82.222%;
+    }
+
+    .container .column.offset-fourteen {
+        margin-left: 88.666%;
+    }
+
+    .container .column.offset-fifteen {
+        margin-left: 94.999%;
+    }
+
+    .container .column.offset-sixteen {
+        margin-left: 100%;
+    }
+
+    .container .column.half {
+        width: 49.333%;
+    }
+
+    .container .column.offset-half {
+        margin-left: 50.666%;
+    }
+
+    .container .column.one-third {
+        width: 32.444%;
+    }
+
+    .container .column.two-thirds {
+        width: 66.222%;
+    }
+
+    .container .column.offset-one-third {
+        margin-left: 33.777%;
+    }
+
+    .container .column.offset-two-thirds {
+        margin-left: 67.555%;
+    }
+
+    .container .column.one-fourth {
+        width: 23.999%;
+    }
+
+    .container .column.two-fourths {
+        width: 49.333%;
+    }
+
+    .container .column.three-fourths {
+        width: 74.666%;
+    }
+
+    .container .column.offset-one-fourth {
+        margin-left: 25.222%;
+    }
+
+    .container .column.offset-two-fourths {
+        margin-left: 50.666%;
+    }
+
+    .container .column.offset-three-fourths {
+        margin-left: 75.999%;
+    }
+
+    .container .column.one-fifth {
+        width: 18.999%;
+    }
+
+    .container .column.two-fifths {
+        width: 39.222%;
+    }
+
+    .container .column.three-fifths {
+        width: 59.446%;
+    }
+
+    .container .column.four-fifths {
+        width: 79.661%;
+    }
+
+    .container .column.offset-one-fifth {
+        margin-left: 20.222%;
+    }
+
+    .container .column.offset-two-fifths {
+        margin-left: 40.555%;
+    }
+
+    .container .column.offset-three-fifths {
+        margin-left: 60.779%;
+    }
+
+    .container .column.offset-four-fifths {
+        margin-left: 80.994%;
+    }
+}
+
+.container:after,
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.mz-logo {
+    padding: 5px;
+    width: 290px;
+    margin: 0 auto;
+    display: table;
+}
+
+table {
+    /* width: 750px;  */
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0px auto;
+    color: #2d2d2d;
+}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+    background: #f1f0f0;
+}
+
+th {
+    background: #ffffff;
+    color: #3185e8;
+    font-weight: bold;
+    border-radius: 6px 6px 0 0;
+    padding: 10px;
+    text-align: left;
+    font-size: 18px;
+    border-bottom: 3px solid #3185e8;
+}
+
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+    font-size: 18px;
+}
+
+tr > td:first-child {
+    font-weight: bold;
+}
+
+/* 
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    table {
+        width: 100%;
+    }
+
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        /* Behave  like a "row" */
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+    }
+
+        td:before {
+            /* Now like a table header */
+            position: absolute;
+            /* Top/left values mimic padding */
+            top: 6px;
+            left: 6px;
+            width: 45%;
+            padding-right: 10px;
+            white-space: nowrap;
+            /* Label the data */
+            content: attr(data-column);
+            color: #000;
+            font-weight: bold;
+        }
+}
+
+.global {
+    width: 80%;
+    margin: 0 auto;
+    /*  margin: 5% auto; */
+}
+
+    .global ul {
+        background: #fff;
+        text-align: center;
+    }
+
+        .global ul li {
+            /* border: 1px solid black; */
+            display: inline-block;
+            margin: 10px;
+            padding: 10px;
+        }

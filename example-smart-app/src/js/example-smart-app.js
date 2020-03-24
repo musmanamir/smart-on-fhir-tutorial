@@ -26,22 +26,8 @@
 
                 $.when(pt, obv).done(function (patient, obv) {
 
-
-                    var cp = smart.patient.api.fetchAll({
-                        type: 'CarePlan',
-                        query: {
-                            patient: patient.id,
-                            category: 'assess-plan'                            
-                        }
-                    });
-
-                    console.log(cp);
-
-                    $.when(cp).done(function (careplan) {
-                        console.log(careplan);
-                        debugger;
-                    });
-
+                    $("#patietid").val(patient.id);
+                    
                     var byCodes = smart.byCodes(obv, 'code');
                     var gender = patient.gender;
 
@@ -89,6 +75,24 @@
                     p.ldl = getQuantityValueAndUnit(ldl[0]);
 
                     ret.resolve(p);
+
+
+                    var cp = smart.patient.api.fetchAll({
+                        type: 'CarePlan',
+                        query: {
+                            patient: patient.id,
+                            category: 'assess-plan'
+                        }
+                    });
+
+                    $.when(cp).done(function (careplan) {
+
+                        for (var i = 0; i <= 10; i++) {
+                            console.log(careplan[i].period.start)
+                        }
+                    });
+
+
                 });
             } else {
                 onError();

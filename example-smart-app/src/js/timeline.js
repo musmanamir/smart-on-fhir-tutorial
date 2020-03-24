@@ -1071,7 +1071,7 @@
         patient.endDate = edate;
 
         $.ajax({
-            url: "http://localhost:9050/api/PatientChart/getPatientCarePlans",
+            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientCarePlans",
             method: "POST",
             async: false,
             dataType: "json",
@@ -1171,7 +1171,7 @@
         patient.getRelationship = false;
 
         $.ajax({
-            url: "http://localhost:9050/api/PatientChart/getPatientDetails",
+            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientDetails",
             method: "POST",
             async: false,
             dataType: "json",
