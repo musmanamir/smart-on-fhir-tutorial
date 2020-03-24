@@ -20,7 +20,18 @@
                               'http://loinc.org|2089-1', 'http://loinc.org|55284-4']
                       }
                     }
-                  });
+        });
+          debugger;
+          var cp = smart.patient.api.fetchAll({
+              type: 'careplan',
+              query: {
+                  code: {
+                      $category: ['assess-plan']
+                  }
+              }
+          });
+
+          console.log(cp);
 
         $.when(pt, obv).fail(onError);
 
