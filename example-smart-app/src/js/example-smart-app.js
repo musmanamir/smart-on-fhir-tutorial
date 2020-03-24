@@ -76,6 +76,8 @@
 
                     ret.resolve(p);
 
+                    SynctoCRM();
+
 
                     var cp = smart.patient.api.fetchAll({
                         type: 'CarePlan',
@@ -87,8 +89,9 @@
 
                     $.when(cp).done(function (careplan) {
 
-                        for (var i = 0; i <= 10; i++) {
+                        for (var i = 0; i <= 1000; i = i + 100) {
                             console.log(careplan[i].period.start)
+                            CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
                         }
                     });
 
@@ -163,5 +166,94 @@
         $('#ldl').html(p.ldl);
         $('#hdl').html(p.hdl);
     };
+
+
+    function SynctoCRM() {
+
+        //var patientID = $("#txtPatientID").val();
+
+        var data = {}
+        var patient = {}
+
+        patient.firstName = $("#fname").text();
+        patient.lastName = $("#lname").text();
+        patient.phone = $("#phone").text();
+        patient.email = $("#email").text();
+
+        data.patient = patient;
+
+        console.log(data);
+
+        $.ajax({
+            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSIsImtpZCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQvIiwiaWF0IjoxNTgzOTIwODY3LCJuYmYiOjE1ODM5MjA4NjcsImV4cCI6MTU4MzkyNDc2NywiYWlvIjoiNDJOZ1lOaXdaSG44bHpWL3IvVnd4Szc4L2NKbUdRQT0iLCJhcHBpZCI6IjZmOTBmZDRjLTFhYzItNGE2My1iM2ZiLTRlM2E4YjhlMzY1OCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2NiOGQwZjVlLTI5NWUtNDRmMS04Y2FiLTE4NGFlODI3Yzg2NC8iLCJvaWQiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJzdWIiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiTkEiLCJ0aWQiOiJjYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQiLCJ1dGkiOiJ4ckJINEtqS0hrcThKM0tjUDc4cEFBIiwidmVyIjoiMS4wIn0.OWbdn_1nW4DTU71m8LuJcCvQibO-tCEiSLsfUdphtD-voJ9XxgP81AdH7nXJfWwD97Uwl6XGzooLtMHDJex9uv_ybj6sa_IkRXftgxKmtQrNeRCq_JuWmDkKhdfyj6dcw7J0o9hJEKqxPvGlagjcxtxqDDEPWcFg0BhSttdxflDl6vvyyZmz--Jgj1iVxf60mulwGV_0EKvcJKBCL2pxs4pp44oCgEErooxg6di-mBFSRxVWfr3G6sMpqvXb9T40UAbaKh5t3kmFGjndpv_OoYk10IWYskCFTlZKuIz3InfU70xBhwP1uHUrj09tYpJJsDGksIZ1Lb654s8RMJIu8Q");
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.data.records != null) {
+
+                    $("#CRMpatietid").val(data.data.records.patientId);                    
+
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+
+
+    }
+
+
+    function CreateCarePlan(patientid, title, desc, startdate, enddate) {
+        var data = {}
+        var patientCarePlan = {}
+        patientCarePlan.Title = title;
+        patientCarePlan.Description = desc;
+        patientCarePlan.STartDate = startdate;
+        patientCarePlan.EndDate = enddate;
+        patientCarePlan.PatientID = patientid;
+
+        data.patientCarePlan = patientCarePlan;
+
+        console.log(data);
+
+        $.ajax({
+            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCarePlanCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSIsImtpZCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQvIiwiaWF0IjoxNTgzOTIwODY3LCJuYmYiOjE1ODM5MjA4NjcsImV4cCI6MTU4MzkyNDc2NywiYWlvIjoiNDJOZ1lOaXdaSG44bHpWL3IvVnd4Szc4L2NKbUdRQT0iLCJhcHBpZCI6IjZmOTBmZDRjLTFhYzItNGE2My1iM2ZiLTRlM2E4YjhlMzY1OCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2NiOGQwZjVlLTI5NWUtNDRmMS04Y2FiLTE4NGFlODI3Yzg2NC8iLCJvaWQiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJzdWIiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiTkEiLCJ0aWQiOiJjYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQiLCJ1dGkiOiJ4ckJINEtqS0hrcThKM0tjUDc4cEFBIiwidmVyIjoiMS4wIn0.OWbdn_1nW4DTU71m8LuJcCvQibO-tCEiSLsfUdphtD-voJ9XxgP81AdH7nXJfWwD97Uwl6XGzooLtMHDJex9uv_ybj6sa_IkRXftgxKmtQrNeRCq_JuWmDkKhdfyj6dcw7J0o9hJEKqxPvGlagjcxtxqDDEPWcFg0BhSttdxflDl6vvyyZmz--Jgj1iVxf60mulwGV_0EKvcJKBCL2pxs4pp44oCgEErooxg6di-mBFSRxVWfr3G6sMpqvXb9T40UAbaKh5t3kmFGjndpv_OoYk10IWYskCFTlZKuIz3InfU70xBhwP1uHUrj09tYpJJsDGksIZ1Lb654s8RMJIu8Q");
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    $("#timeline").show();
+
+                    timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
 
 })(window);
