@@ -21,22 +21,22 @@
                       }
                     }
         });
-          debugger;
-          var cp = smart.patient.api.fetchAll({
-              type: 'careplan',
-              query: {
-                  category: 'assess-plan',
-                  patient: pt.id
-              }
-          });
+          //debugger;
+          //var cp = smart.patient.api.fetchAll({
+          //    type: 'careplan',
+          //    query: {
+          //        category: 'assess-plan',
+          //        patient: pt.id
+          //    }
+          //});
 
-          console.log(cp);
+          //console.log(cp);
 
-          $.when(pt, obv, cp).fail(onError);
+          $.when(pt, obv).fail(onError);
 
-          $.when(pt, obv, cp).done(function (patient, obv, careplan) {
+          $.when(pt, obv).done(function (patient, obv) {
 
-              console.log(careplan);
+              //console.log(careplan);
 
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
