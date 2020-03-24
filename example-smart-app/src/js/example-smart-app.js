@@ -40,7 +40,7 @@
                     $.when(cp).done(function (careplan) {
                         console.log(careplan);
                         debugger;
-                    };
+                    });
 
                     var byCodes = smart.byCodes(obv, 'code');
                     var gender = patient.gender;
