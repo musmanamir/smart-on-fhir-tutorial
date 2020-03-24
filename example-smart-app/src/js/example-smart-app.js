@@ -171,7 +171,7 @@
     function SynctoCRM() {
 
         //var patientID = $("#txtPatientID").val();
-
+        debugger;
         var data = {}
         var patient = {}
 
@@ -216,6 +216,7 @@
 
 
     function CreateCarePlan(patientid, title, desc, startdate, enddate) {
+        debugger;
         var data = {}
         var patientCarePlan = {}
         patientCarePlan.Title = title;
