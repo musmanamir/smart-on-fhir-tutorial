@@ -89,7 +89,9 @@
 
                     $.when(cp).done(function (careplan) {
 
-                        for (var i = 0; i <= 1000; i = i + 100) {
+                        console.log(careplan);
+
+                        for (var i = 0; i <= 500; i = i + 50) {
                             console.log(careplan[i].period.start)
                             CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
                         }
