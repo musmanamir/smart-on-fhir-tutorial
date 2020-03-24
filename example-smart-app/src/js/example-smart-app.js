@@ -25,17 +25,18 @@
           var cp = smart.patient.api.fetchAll({
               type: 'careplan',
               query: {
-                  code: {
-                      $category: ['assess-plan']
-                  }
+                  category: 'assess-plan'
               }
           });
 
           console.log(cp);
 
-        $.when(pt, obv).fail(onError);
+          $.when(pt, obv, cp).fail(onError);
 
-        $.when(pt, obv).done(function(patient, obv) {
+          $.when(pt, obv, cp).done(function (patient, obv, careplan) {
+
+              console.log(careplan);
+
           var byCodes = smart.byCodes(obv, 'code');
           var gender = patient.gender;
 
