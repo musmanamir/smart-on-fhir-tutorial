@@ -79,23 +79,42 @@
                     SynctoCRM();
 
 
-                    var cp = smart.patient.api.fetchAll({
-                        type: 'CarePlan',
+                    var alrgy = smart.patient.api.fetchAll({
+                        type: 'AllergyIntolerance',
                         query: {
                             patient: patient.id
-                            //,category: 'assess-plan'
                         }
                     });
 
-                    $.when(cp).done(function (careplan) {
+                    $.when(alrgy).done(function (Allergy) {
 
-                        console.log(careplan);
+                        console.log(Allergy);
 
-                        for (var i = 0; i <= 10; i++) {                            
+                        for (var i = 0; i <= Allergy.Length; i++) {
                             console.log(careplan[i].period.start)
-                            CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
+                            CreateAllergy($("#CRMpatietid").val(), fname + " " + lname + " Allergy");
                         }
                     });
+
+
+
+                    //var cp = smart.patient.api.fetchAll({
+                    //    type: 'CarePlan',
+                    //    query: {
+                    //        patient: patient.id
+                    //        //,category: 'assess-plan'
+                    //    }
+                    //});
+
+                    //$.when(cp).done(function (careplan) {
+
+                    //    console.log(careplan);
+
+                    //    for (var i = 0; i <= 10; i++) {                            
+                    //        console.log(careplan[i].period.start)
+                    //        CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
+                    //    }
+                    //});
 
 
                 });
@@ -233,6 +252,46 @@
 
         $.ajax({
             url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCarePlanCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSIsImtpZCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQvIiwiaWF0IjoxNTgzOTIwODY3LCJuYmYiOjE1ODM5MjA4NjcsImV4cCI6MTU4MzkyNDc2NywiYWlvIjoiNDJOZ1lOaXdaSG44bHpWL3IvVnd4Szc4L2NKbUdRQT0iLCJhcHBpZCI6IjZmOTBmZDRjLTFhYzItNGE2My1iM2ZiLTRlM2E4YjhlMzY1OCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2NiOGQwZjVlLTI5NWUtNDRmMS04Y2FiLTE4NGFlODI3Yzg2NC8iLCJvaWQiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJzdWIiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiTkEiLCJ0aWQiOiJjYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQiLCJ1dGkiOiJ4ckJINEtqS0hrcThKM0tjUDc4cEFBIiwidmVyIjoiMS4wIn0.OWbdn_1nW4DTU71m8LuJcCvQibO-tCEiSLsfUdphtD-voJ9XxgP81AdH7nXJfWwD97Uwl6XGzooLtMHDJex9uv_ybj6sa_IkRXftgxKmtQrNeRCq_JuWmDkKhdfyj6dcw7J0o9hJEKqxPvGlagjcxtxqDDEPWcFg0BhSttdxflDl6vvyyZmz--Jgj1iVxf60mulwGV_0EKvcJKBCL2pxs4pp44oCgEErooxg6di-mBFSRxVWfr3G6sMpqvXb9T40UAbaKh5t3kmFGjndpv_OoYk10IWYskCFTlZKuIz3InfU70xBhwP1uHUrj09tYpJJsDGksIZ1Lb654s8RMJIu8Q");
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    $("#timeline").show();
+
+                    timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
+
+    function CreateAllergy(patientid, title) {
+        debugger;
+        var data = {}
+        var patientAllergy = {}
+        patientAllergy.name = title;
+        patientAllergy.patientId = patientid;
+
+        data.patientCarePlan = patientAllergy;
+
+        console.log(data);
+
+        $.ajax({
+            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientAllergyCRM",
             method: "POST",
             async: false,
             dataType: "json",
