@@ -360,7 +360,7 @@
                                 var tempcol = '';
                                 for (var k = dates.length - 1; k >= 0; k--) {
                                     if (filterData[j].date == dates[k]) {
-                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
+                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
                                     }
                                     else if (moment(dates[k]) < moment(pregDate)) {
                                         tempcol += '<div class="cellFlex greyOut" id="c-' + j + k + '"></div>';
@@ -376,7 +376,7 @@
                                 var tempcol = '';
                                 for (var k = dates.length - 1; k >= 0; k--) {
                                     if (filterData[j].date == dates[k]) {
-                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
+                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
                                         $('#c-' + j + k).append(tempcol);
                                     }
                                 }
@@ -442,7 +442,7 @@
                                 for (var k = dates.length - 1; k >= 0; k--) {
 
                                     if (moment(filterData[j].date) >= moment(dates[k]) && moment(filterData[j].date) < moment(dates[k - 1]) && isMatch == false) {
-                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
+                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
                                         isMatch = true;
                                     }
                                     else if (moment(dates[k]) < moment(pregDate).startOf('week')) {
@@ -459,7 +459,7 @@
                                 var tempcol = '';
                                 for (var k = 0; k <= dates.length - 1; k++) {
                                     if (moment(filterData[j].date) >= moment(dates[k]) && moment(filterData[j].date) < moment(dates[k - 1])) {
-                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
+                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
 
                                         $('#c-' + j + k).append(tempcol);
 
@@ -522,7 +522,7 @@
                                 var isMatch = false;
                                 for (var k = dates.length - 1; k >= 0; k--) {
                                     if (moment(filterData[j].date).month() + 1 == moment(dates[k]).month() + 1 && moment(filterData[j].date).year() == moment(dates[k]).year() && isMatch == false) {
-                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
+                                        tempcol += '<div class="cellFlex" id="c-' + j + k + '"><div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div></div>';
                                         isMatch = true;
                                     }
                                     else if (moment(dates[k]) < moment(pregDate)) {
@@ -539,7 +539,7 @@
                                 var tempcol = '';
                                 for (var k = 0; k <= dates.length - 1; k++) {
                                     if (moment(filterData[j].date).month() + 1 == moment(dates[k]).month() + 1 && moment(filterData[j].date).year() == moment(dates[k]).year()) {
-                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="truncate openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
+                                        tempcol = '<div class="note"><img src="' + getTypeImageName(filterData[j].type) + '" alt="' + getTypeImageAltName(filterData[j].type) + '"> <p><a class="openLink" data-id="' + filterData[j].id + '" data-entity="' + filterData[j].entity + '">' + filterData[j].name + '</a></p> </div>';
                                         $('#c-' + j + k).append(tempcol);
                                     }
                                 }
