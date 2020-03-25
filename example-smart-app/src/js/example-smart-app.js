@@ -91,8 +91,10 @@
                         console.log(Allergy);
 
                         for (var i = 0; i <= Allergy.Length; i++) {
-                            console.log(careplan[i].period.start)
-                            CreateAllergy($("#CRMpatietid").val(), fname + " " + lname + " Allergy");
+
+                            var title = Allergy[i].substance.coding[0].display;
+
+                            CreateAllergy($("#CRMpatietid").val(), fname + " " + lname + " - " + title);
                         }
                     });
 

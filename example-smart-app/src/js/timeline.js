@@ -1119,10 +1119,10 @@
 
     }
 
-    async function Allergy(sdate, edate) {        
+    async function Allergy(sdate, edate) {
         debugger;
         var patient = {}
-        patient.patientId = 'f281fa9f-cc69-ea11-a811-000d3a5a1e46';
+        patient.patientId = pid;
         patient.startDate = sdate;
         patient.endDate = edate;
 
