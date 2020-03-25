@@ -288,7 +288,7 @@
         patientAllergy.name = title;
         patientAllergy.patientId = patientid;
 
-        data.patientCarePlan = patientAllergy;
+        data.patientAllergy = patientAllergy;
 
         console.log(data);
 
