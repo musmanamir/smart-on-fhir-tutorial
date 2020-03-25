@@ -82,8 +82,8 @@
                     var cp = smart.patient.api.fetchAll({
                         type: 'CarePlan',
                         query: {
-                            patient: patient.id,
-                            category: 'assess-plan'
+                            patient: patient.id
+                            //,category: 'assess-plan'
                         }
                     });
 
