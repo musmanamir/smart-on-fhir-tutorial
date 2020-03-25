@@ -94,29 +94,29 @@
 
                             var title = Allergy[i].substance.coding[0].display;
 
-                            CreateAllergy($("#CRMpatietid").val(), fname + " " + lname + " - " + title);
+                            CreateAllergy($("#CRMpatietid").val(), "Allergy - " + title);
                         }
                     });
 
 
 
-                    //var cp = smart.patient.api.fetchAll({
-                    //    type: 'CarePlan',
-                    //    query: {
-                    //        patient: patient.id
-                    //        //,category: 'assess-plan'
-                    //    }
-                    //});
+                    var cp = smart.patient.api.fetchAll({
+                        type: 'CarePlan',
+                        query: {
+                            patient: patient.id
+                            //,category: 'assess-plan'
+                        }
+                    });
 
-                    //$.when(cp).done(function (careplan) {
+                    $.when(cp).done(function (careplan) {
 
-                    //    console.log(careplan);
+                        console.log(careplan);
 
-                    //    for (var i = 0; i <= 10; i++) {                            
-                    //        console.log(careplan[i].period.start)
-                    //        CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
-                    //    }
-                    //});
+                        for (var i = 0; i <= 10; i++) {                            
+                            console.log(careplan[i].period.start)
+                            CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
+                        }
+                    });
 
 
                 });
