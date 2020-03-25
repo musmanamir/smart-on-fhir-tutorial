@@ -90,7 +90,7 @@
 
                         console.log(Allergy);
 
-                        for (var i = 0; i <= Allergy.Length; i++) {
+                        for (var i = 0; i <= Allergy.length; i++) {
 
                             var title = Allergy[i].substance.coding[0].display;
 
