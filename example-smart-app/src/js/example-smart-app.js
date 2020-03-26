@@ -85,7 +85,8 @@
                                 if (obv[i] != null) {
                                     if (obv[i] != undefined) {
                                         var title = obv[i].code.coding[0].display;
-                                        CreateObservation(obv[i].id, $("#CRMpatietid").val(), "Observation - " + title);
+                                        var recordeddate = obv[i].issued;
+                                        CreateObservation(obv[i].id, $("#CRMpatietid").val(), "Observation - " + title, recordeddate);
                                     }
                                 }
                             }
@@ -110,7 +111,8 @@
                                     if (Allergy[i] != null) {
                                         if (Allergy[i] != undefined) {
                                             var title = Allergy[i].substance.coding[0].display;
-                                            CreateAllergy(Allergy[i].id, $("#CRMpatietid").val(), "Allergy - " + title);
+                                            var recordeddate = Allergy[i].recordedDate;
+                                            CreateAllergy(Allergy[i].id, $("#CRMpatietid").val(), "Allergy - " + title, recordeddate);
                                         }
                                     }
                                 }
@@ -308,13 +310,14 @@
         });
     }
 
-    function CreateAllergy(id, patientid, title) {
+    function CreateAllergy(id, patientid, title, startdate) {
         debugger;
         var data = {}
         var patientAllergy = {}
         patientAllergy.Externalemrid = id;
         patientAllergy.name = title;
         patientAllergy.patientId = patientid;
+        patientAllergy.RecordedDate = startdate;
 
         data.patientAllergy = patientAllergy;
 
@@ -348,13 +351,14 @@
         });
     }
 
-    function CreateObservation(id, patientid, title) {
+    function CreateObservation(id, patientid, title, IssuedDate) {
         debugger;
         var data = {}
         var patientObservation = {}
         patientObservation.Externalemrid = id;
         patientObservation.description = title;
         patientObservation.patientId = patientid;
+        patientObservation.IssuedDate = IssuedDate;
 
         data.patientObservation = patientObservation;
 

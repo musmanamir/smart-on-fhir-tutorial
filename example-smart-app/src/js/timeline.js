@@ -1153,9 +1153,9 @@
                     }
                     item.name = dataSet.name;
 
-                    if (dataSet.hasOwnProperty('CreatedOn')) {
-                        item.date = moment.utc(dataSet.CreatedOn).format('MM/DD/YYYY');
-                        item.dateTime = moment.utc(dataSet.CreatedOn).format('YYYY-MM-DD HH:mm:ss');
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 9;
                     item.entity = "msemr_allergyintolerance";
@@ -1204,9 +1204,9 @@
                     }
                     item.name = dataSet.Description;
 
-                    if (dataSet.hasOwnProperty('CreatedOn')) {
-                        item.date = moment.utc(dataSet.CreatedOn).format('MM/DD/YYYY');
-                        item.dateTime = moment.utc(dataSet.CreatedOn).format('YYYY-MM-DD HH:mm:ss');
+                    if (dataSet.hasOwnProperty('IssuedDate')) {
+                        item.date = moment.utc(dataSet.IssuedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.IssuedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 9;
                     item.entity = "msemr_observation";
