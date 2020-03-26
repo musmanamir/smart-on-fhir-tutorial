@@ -76,7 +76,7 @@
 
                     ret.resolve(p);
 
-                    SynctoCRM();
+                    SynctoCRM(patient.id);
 
 
                     if (obv != null) {
@@ -85,7 +85,7 @@
                                 if (obv[i] != null) {
                                     if (obv[i] != undefined) {
                                         var title = obv[i].code.coding[0].display;
-                                        CreateObservation($("#CRMpatietid").val(), "Observation - " + title);
+                                        CreateObservation(obv[i].id, $("#CRMpatietid").val(), "Observation - " + title);
                                     }
                                 }
                             }
@@ -110,7 +110,7 @@
                                     if (Allergy[i] != null) {
                                         if (Allergy[i] != undefined) {
                                             var title = Allergy[i].substance.coding[0].display;
-                                            CreateAllergy($("#CRMpatietid").val(), "Allergy - " + title);
+                                            CreateAllergy(Allergy[i].id, $("#CRMpatietid").val(), "Allergy - " + title);
                                         }
                                     }
                                 }
@@ -137,7 +137,7 @@
                                 for (var i = 0; i <= 10; i++) {
                                     if (careplan[i] != null) {
                                         if (careplan[i] != undefined) {
-                                            CreateCarePlan($("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
+                                            CreateCarePlan(careplan[i].id, $("#CRMpatietid").val(), fname + " " + lname + " Care Plan", fname + " " + lname + " Care Plan", careplan[i].period.start, careplan[i].period.start);
                                         }
                                     }
                                 }
@@ -218,13 +218,14 @@
     };
 
 
-    function SynctoCRM() {
+    function SynctoCRM(patientid) {
 
         //var patientID = $("#txtPatientID").val();
         debugger;
         var data = {}
         var patient = {}
 
+        patient.Externalemrid = patientid;
         patient.firstName = $("#fname").text();
         patient.lastName = $("#lname").text();
         patient.phone = $("#phone").text();
@@ -235,7 +236,7 @@
         console.log(data);
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientCRM",
             method: "POST",
             async: false,
             dataType: "json",
@@ -264,10 +265,11 @@
 
     }
 
-    function CreateCarePlan(patientid, title, desc, startdate, enddate) {
+    function CreateCarePlan(id, patientid, title, desc, startdate, enddate) {
         debugger;
         var data = {}
         var patientCarePlan = {}
+        patientCarePlan.Externalemrid = id;
         patientCarePlan.Title = title;
         patientCarePlan.Description = desc;
         patientCarePlan.STartDate = startdate;
@@ -279,7 +281,7 @@
         console.log(data);
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientCarePlanCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientCarePlanCRM",
             method: "POST",
             async: false,
             dataType: "json",
@@ -306,10 +308,11 @@
         });
     }
 
-    function CreateAllergy(patientid, title) {
+    function CreateAllergy(id, patientid, title) {
         debugger;
         var data = {}
         var patientAllergy = {}
+        patientAllergy.Externalemrid = id;
         patientAllergy.name = title;
         patientAllergy.patientId = patientid;
 
@@ -318,7 +321,7 @@
         console.log(data);
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientAllergyCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientAllergyCRM",
             method: "POST",
             async: false,
             dataType: "json",
@@ -345,10 +348,11 @@
         });
     }
 
-    function CreateObservation(patientid, title) {
+    function CreateObservation(id, patientid, title) {
         debugger;
         var data = {}
         var patientObservation = {}
+        patientObservation.Externalemrid = id;
         patientObservation.description = title;
         patientObservation.patientId = patientid;
 
@@ -357,7 +361,7 @@
         console.log(data);
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/CreatePatientObservationCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientObservationCRM",
             method: "POST",
             async: false,
             dataType: "json",

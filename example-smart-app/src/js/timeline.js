@@ -1077,7 +1077,7 @@
         patient.endDate = edate;
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientCarePlans",
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientCarePlans",
             method: "POST",
             async: false,
             dataType: "json",
@@ -1128,7 +1128,7 @@
         patient.endDate = edate;
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientAllergiesCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientAllergiesCRM",
             method: "POST",
             async: false,
             dataType: "json",
@@ -1179,7 +1179,7 @@
         patient.endDate = edate;
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientObservationCRM",
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientObservationCRM",
             method: "POST",
             async: false,
             dataType: "json",
