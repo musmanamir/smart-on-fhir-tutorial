@@ -84,7 +84,7 @@
                             for (var i = 0; i <= obv.length; i++) {
                                 if (obv[i] != null) {
                                     if (obv[i] != undefined) {
-                                        var title = Allergy[i].code.coding[0].display;
+                                        var title = obv[i].code.coding[0].display;
                                         CreateObservation($("#CRMpatietid").val(), "Observation - " + title);
                                     }
                                 }
