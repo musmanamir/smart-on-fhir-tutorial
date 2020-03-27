@@ -366,7 +366,7 @@ body {
 
 button.ui-datepicker-trigger {
     margin-left: -26px;
-    background: url(/example-smart-app/src/images/msemr_cal.png) center center no-repeat;
+    background: url(../images/msemr_cal.png) center center no-repeat;
     border: 0;
     cursor: pointer;
     opacity: 0.7;
