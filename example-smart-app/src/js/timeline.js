@@ -12,7 +12,7 @@
     var isChanged = false;
     var defaultName = "NA";
     var timeLineFooter = '<div class="timelineFooter"> <a class="previousnext round" href = "javascript:movePrevious()"> &#8249 </a> <a  class="previousnext round" href="javascript:moveNext()"> &#8250 </a>  </div> ';
-    var checkboxesVisible = false;
+    //var checkboxesVisible = false;
 
     if (pid == '' || pid == null) {
         $('.timelineControl').hide();
