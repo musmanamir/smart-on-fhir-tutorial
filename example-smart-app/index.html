@@ -25,6 +25,19 @@
         }
     </style>
 
+    <!--<script>
+        $(function () {
+            $("#datepicker").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#datepicker2").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>-->
+
     <!--
       Temporarily disable cerner-smart-embeddable-lib
       <link rel='stylesheet' type='text/css' href='./lib/css/cerner-smart-embeddable-lib-1.0.0.min.css'>
@@ -54,40 +67,35 @@
             <div class="row">
 
                 <div class="column">
-                    <input type="hidden" id="CRMpatietid" value="f281fa9f-cc69-ea11-a811-000d3a5a1e46" />
+                    <input type="hidden" id="CRMpatietid" value="19b97df9-ad6e-ea11-a811-000d3a5a1477" />
                     <input type="hidden" id="patietid" value="" />
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="2">Patient Resource</th>
+                                <th colspan="4">Patient Resource</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td data-column="First Name">First Name</td>
+                                <td data-column="First Name"><strong>First Name</strong></td>
                                 <td id='fname' data-column="First Name">Steve</td>
-                            </tr>
-                            <tr>
-                                <td data-column="Last Name">Last Name</td>
+                                <td data-column="Last Name"><strong>Last Name</strong></td>
                                 <td id='lname' data-column="Last Name">Smith</td>
                             </tr>
                             <tr>
-                                <td data-column="Phone">Phone</td>
+                                <td data-column="Phone"><strong>Phone</strong></td>
                                 <td id='phone' data-column="Phone">12345678</td>
-                            </tr>
-                            <tr>
-                                <td data-column="Email">Email</td>
+                                <td data-column="Email"><strong>Email</strong></td>
                                 <td id='email' data-column="Email">stevesmith@gmail.com</td>
                             </tr>
                             <tr>
-                                <td data-column="Gender">Gender</td>
+                                <td data-column="Gender"><strong>Gender</strong></td>
                                 <td id='gender' data-column="Gender">Male</td>
-                            </tr>
-                            <tr>
-                                <td data-column="Date of Birth">Date of Birth</td>
+                                <td data-column="Date of Birth"><strong>Date of Birth</strong></td>
                                 <td id='birthdate' data-column="Date of Birth">03/03/2000</td>
                             </tr>
-
+                            
+                            
                         </tbody>
                     </table>
                 </div>
