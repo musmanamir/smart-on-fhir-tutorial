@@ -619,7 +619,7 @@
 
         loadData(true, sDate, eDate);
     }
-
+    debugger;
     function movePrevious() {
         var sDate, eDate;
         switch (viewType) {
