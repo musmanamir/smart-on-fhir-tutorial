@@ -11,7 +11,7 @@
     var userDateFormat = 'MM/DD/YYYY';
     var isChanged = false;
     var defaultName = "NA";
-    var timeLineFooter = '<div class="timelineFooter"> <a class="previousnext round" href = "javascript:;" onclick="movePrevious()" > &#8249 </a> <a  class="previousnext round" href="javascript:;" onclick="moveNext()"> &#8250 </a>  </div> ';
+    var timeLineFooter = '<div class="timelineFooter"> <a class="previousnext round" style="cursor:pointer;" onclick="javascript:movePrevious()" > &#8249 </a> <a  class="previousnext round" style="cursor:pointer;" onclick="javascript:moveNext()"> &#8250 </a>  </div> ';
     //var checkboxesVisible = false;
 
     if (pid == '' || pid == null) {
@@ -599,6 +599,47 @@
         }, 500);
     }
 
+
+    function moveNext() {
+        var sDate, eDate;
+        switch (viewType) {
+            case 1:
+                sDate = moment(currentStartDate).add(7, 'days').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).add(7, 'days').format('MM/DD/YYYY');
+                break;
+            case 2:
+                sDate = moment(currentStartDate).add(4, 'weeks').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).add(4, 'weeks').format('MM/DD/YYYY');
+                break;
+            case 3:
+                sDate = moment(currentStartDate).add(6, 'months').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).add(6, 'months').format('MM/DD/YYYY');
+                break;
+        }
+
+        loadData(true, sDate, eDate);
+    }
+
+    function movePrevious() {
+        var sDate, eDate;
+        switch (viewType) {
+            case 1:
+                sDate = moment(currentStartDate).subtract(7, 'days').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).subtract(7, 'days').format('MM/DD/YYYY');
+                break;
+            case 2:
+                sDate = moment(currentStartDate).subtract(4, 'weeks').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).subtract(4, 'weeks').format('MM/DD/YYYY');
+                break;
+            case 3:
+                sDate = moment(currentStartDate).subtract(6, 'months').format('MM/DD/YYYY');
+                eDate = moment(currentEndDate).subtract(6, 'months').format('MM/DD/YYYY');
+                break;
+        }
+
+        loadData(true, sDate, eDate);
+    }
+
     function loadUserDateFormat() {
         var query = "?$select=dateformatstring&$filter=" + encodeURIComponent("systemuserid eq " + userId.replace(/[{}]/g, "")) + "";
 
@@ -1155,7 +1196,7 @@
                         item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
                         item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
-                    item.type = 9;
+                    item.type = 11;
                     item.entity = "msemr_allergyintolerance";
                     list.push(item);
                 };
@@ -1205,7 +1246,7 @@
                         item.date = moment.utc(dataSet.IssuedDate).format('MM/DD/YYYY');
                         item.dateTime = moment.utc(dataSet.IssuedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
-                    item.type = 9;
+                    item.type = 12;
                     item.entity = "msemr_observation";
                     list.push(item);
                 };
@@ -1499,25 +1540,7 @@
         return dates;
     }
 
-    function moveNext() {
-        var sDate, eDate;
-        switch (viewType) {
-            case 1:
-                sDate = moment(currentStartDate).add(7, 'days').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).add(7, 'days').format('MM/DD/YYYY');
-                break;
-            case 2:
-                sDate = moment(currentStartDate).add(4, 'weeks').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).add(4, 'weeks').format('MM/DD/YYYY');
-                break;
-            case 3:
-                sDate = moment(currentStartDate).add(6, 'months').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).add(6, 'months').format('MM/DD/YYYY');
-                break;
-        }
-
-        loadData(true, sDate, eDate);
-    }
+    
 
     function getMinMaxDates() {
         var MinMaxDates = {
@@ -1525,27 +1548,7 @@
             max: moment($('#txtEndDate').datepicker('getDate'))
         };
         return MinMaxDates;
-    }
-
-    function movePrevious() {
-        var sDate, eDate;
-        switch (viewType) {
-            case 1:
-                sDate = moment(currentStartDate).subtract(7, 'days').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).subtract(7, 'days').format('MM/DD/YYYY');
-                break;
-            case 2:
-                sDate = moment(currentStartDate).subtract(4, 'weeks').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).subtract(4, 'weeks').format('MM/DD/YYYY');
-                break;
-            case 3:
-                sDate = moment(currentStartDate).subtract(6, 'months').format('MM/DD/YYYY');
-                eDate = moment(currentEndDate).subtract(6, 'months').format('MM/DD/YYYY');
-                break;
-        }
-
-        loadData(true, sDate, eDate);
-    }
+    }    
 
     function enableDisableBackForward() {
         var showPrev = false;
