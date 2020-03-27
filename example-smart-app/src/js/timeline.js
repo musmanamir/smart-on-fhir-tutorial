@@ -1430,6 +1430,8 @@
             case 7: return "Referral";
             case 8: return "Encounter";
             case 9: return "Care Plan";
+            case 11: return "Allergy";
+            case 12: return "Observation";
             case 10: return "Goal";
             default: return "";
         }
