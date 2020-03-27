@@ -258,20 +258,20 @@
 
     // FUNCTIONS
 
-    function showCheckboxOptions() {
-        var checkboxes = document.getElementById("checkboxEventList");
-        var eventSelect = document.getElementById("eventSelect");
-        if (!checkboxesVisible) {
-            eventSelect.innerText = eventSelect.innerText.replace("▼", "▲");
-            checkboxes.style.display = '';
-            checkboxesVisible = true;
-        }
-        else {
-            eventSelect.innerText = eventSelect.innerText.replace("▲", "▼");
-            checkboxes.style.display = 'none';
-            checkboxesVisible = false;
-        }
-    }
+    //function showCheckboxOptions() {
+    //    var checkboxes = document.getElementById("checkboxEventList");
+    //    var eventSelect = document.getElementById("eventSelect");
+    //    if (!checkboxesVisible) {
+    //        eventSelect.innerText = eventSelect.innerText.replace("▼", "▲");
+    //        checkboxes.style.display = '';
+    //        checkboxesVisible = true;
+    //    }
+    //    else {
+    //        eventSelect.innerText = eventSelect.innerText.replace("▲", "▼");
+    //        checkboxes.style.display = 'none';
+    //        checkboxesVisible = false;
+    //    }
+    //}
 
     function loadData(doSync, sDate, eDate) {
         $("._loader").show();
@@ -1319,6 +1319,8 @@
                     }
                 }
                 $("#txtStartDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
                     showOn: "button",
                     minDate: moment(pregDate).format('MM/DD/YYYY'),
                     maxDate: moment().format('MM/DD/YYYY'),
@@ -1326,6 +1328,8 @@
                 });
 
                 $("#txtEndDate").datepicker({
+                    changeMonth: true,
+                    changeYear: true,
                     showOn: "button",
                     minDate: moment(pregDate).format('MM/DD/YYYY'),
                     maxDate: moment().format('MM/DD/YYYY'),
