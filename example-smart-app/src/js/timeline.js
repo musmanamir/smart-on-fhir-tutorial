@@ -287,44 +287,44 @@
             $('#txtEndDate').val(eDate);
 
             if (doSync) {
-                //await loadUserDateFormat();
+                //loadUserDateFormat();
 
                 list = [];
                 //if (checkedEvents.indexOf('1') > -1) {
-                //    await loadAppointments(sDate, eDate);
+                //    loadAppointments(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('2') > -1) {
-                //    await loadDevices(sDate, eDate);
+                //    loadDevices(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('3') > -1) {
-                //    await loadMedications(sDate, eDate);
+                //    loadMedications(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('4') > -1) {
-                //    await NutritionOrders(sDate, eDate);
+                //    NutritionOrders(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('5') > -1) {
-                //    await Tasks(sDate, eDate);
+                //    Tasks(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('6') > -1) {
-                //    await Procedures(sDate, eDate);
+                //    Procedures(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('7') > -1) {
-                //    await Referrals(sDate, eDate);
+                //    Referrals(sDate, eDate);
                 //}
                 //if (checkedEvents.indexOf('8') > -1) {
-                //    await Encounter(sDate, eDate);
+                //    Encounter(sDate, eDate);
                 //}
                 if (checkedEvents.indexOf('9') > -1) {
-                    await CarePlan(sDate, eDate);
+                    CarePlan(sDate, eDate);
                 }
                 if (checkedEvents.indexOf('11') > -1) {
-                    await Allergy(sDate, eDate);
+                    Allergy(sDate, eDate);
                 }
                 if (checkedEvents.indexOf('12') > -1) {
-                    await Observation(sDate, eDate);
+                    Observation(sDate, eDate);
                 }
                 //if (checkedEvents.indexOf('10') > -1) {
-                //    await CarePlanGoal(sDate, eDate);
+                //   CarePlanGoal(sDate, eDate);
                 //}
             }
 
