@@ -1153,7 +1153,9 @@
                     }
                     item.name = dataSet.name;
 
+                    console.log(dataSet.name)
                     if (dataSet.hasOwnProperty('RecordedDate')) {
+                        console.log(dataSet.RecordedDate);
                         item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
                         item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
@@ -1204,7 +1206,9 @@
                     }
                     item.name = dataSet.Description;
 
+                    console.log(dataSet.Description)
                     if (dataSet.hasOwnProperty('IssuedDate')) {
+                        console.log(dataSet.IssuedDate);
                         item.date = moment.utc(dataSet.IssuedDate).format('MM/DD/YYYY');
                         item.dateTime = moment.utc(dataSet.IssuedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
