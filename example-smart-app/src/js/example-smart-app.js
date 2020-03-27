@@ -148,6 +148,11 @@
                     });
 
 
+                    setTimeout(function () {
+                        $("#timeline").show();
+                        timeline();
+                    }, 7000);                   
+
                 });
             } else {
                 onError();
@@ -251,7 +256,6 @@
                 xhr.setRequestHeader("Authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSIsImtpZCI6IkhsQzBSMTJza3hOWjFXUXdtak9GXzZ0X3RERSJ9.eyJhdWQiOiIwMDAwMDAwMi0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9jYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQvIiwiaWF0IjoxNTgzOTIwODY3LCJuYmYiOjE1ODM5MjA4NjcsImV4cCI6MTU4MzkyNDc2NywiYWlvIjoiNDJOZ1lOaXdaSG44bHpWL3IvVnd4Szc4L2NKbUdRQT0iLCJhcHBpZCI6IjZmOTBmZDRjLTFhYzItNGE2My1iM2ZiLTRlM2E4YjhlMzY1OCIsImFwcGlkYWNyIjoiMSIsImlkcCI6Imh0dHBzOi8vc3RzLndpbmRvd3MubmV0L2NiOGQwZjVlLTI5NWUtNDRmMS04Y2FiLTE4NGFlODI3Yzg2NC8iLCJvaWQiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJzdWIiOiJjNTZhOWVhZi0xNGUxLTRiMjctODVkZS0yYjI3MTBkNGI4OTciLCJ0ZW5hbnRfcmVnaW9uX3Njb3BlIjoiTkEiLCJ0aWQiOiJjYjhkMGY1ZS0yOTVlLTQ0ZjEtOGNhYi0xODRhZTgyN2M4NjQiLCJ1dGkiOiJ4ckJINEtqS0hrcThKM0tjUDc4cEFBIiwidmVyIjoiMS4wIn0.OWbdn_1nW4DTU71m8LuJcCvQibO-tCEiSLsfUdphtD-voJ9XxgP81AdH7nXJfWwD97Uwl6XGzooLtMHDJex9uv_ybj6sa_IkRXftgxKmtQrNeRCq_JuWmDkKhdfyj6dcw7J0o9hJEKqxPvGlagjcxtxqDDEPWcFg0BhSttdxflDl6vvyyZmz--Jgj1iVxf60mulwGV_0EKvcJKBCL2pxs4pp44oCgEErooxg6di-mBFSRxVWfr3G6sMpqvXb9T40UAbaKh5t3kmFGjndpv_OoYk10IWYskCFTlZKuIz3InfU70xBhwP1uHUrj09tYpJJsDGksIZ1Lb654s8RMJIu8Q");
             },
             success: function (data) {
-                console.log(data);
                 if (data.data.records != null) {
 
                     $("#CRMpatietid").val(data.data.records.patientId);                    
@@ -280,8 +284,6 @@
 
         data.patientCarePlan = patientCarePlan;
 
-        console.log(data);
-
         $.ajax({
             url: $("#hdnPatientChartAPIURL").val() + "CreatePatientCarePlanCRM",
             method: "POST",
@@ -298,9 +300,9 @@
             success: function (data) {
                 if (data.data.records != null) {
 
-                    $("#timeline").show();
+                    //$("#timeline").show();
 
-                    timeline();
+                    //timeline();
                 }
 
             },
@@ -321,8 +323,6 @@
 
         data.patientAllergy = patientAllergy;
 
-        console.log(data);
-
         $.ajax({
             url: $("#hdnPatientChartAPIURL").val() + "CreatePatientAllergyCRM",
             method: "POST",
@@ -339,9 +339,9 @@
             success: function (data) {
                 if (data.data.records != null) {
 
-                    $("#timeline").show();
+                    //$("#timeline").show();
 
-                    timeline();
+                    //timeline();
                 }
 
             },
@@ -362,8 +362,6 @@
 
         data.patientObservation = patientObservation;
 
-        console.log(data);
-
         $.ajax({
             url: $("#hdnPatientChartAPIURL").val() + "CreatePatientObservationCRM",
             method: "POST",
@@ -380,9 +378,9 @@
             success: function (data) {
                 if (data.data.records != null) {
 
-                    $("#timeline").show();
+                    //$("#timeline").show();
 
-                    timeline();
+                    //timeline();
                 }
 
             },

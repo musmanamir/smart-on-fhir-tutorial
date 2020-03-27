@@ -109,11 +109,11 @@ body {
     }
 
     .searchControl input[type=text], .searchControl input[type=date], .searchControl select {
-        border: 2px solid;
+        border: 1px solid #cccccc;
         padding: 10px 5px;
         min-height: 28px;
         box-sizing: border-box;
-        border-radius: 2px;
+        border-radius: 6px;
         min-width: 140px;
     }
 
@@ -708,12 +708,12 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin: 0px auto;
-    color: #2d2d2d;
+    color: #525f64;
 }
 
 /* Zebra striping */
 tr:nth-of-type(odd) {
-    background: #f1f0f0;
+    background: #f1f7fa;
 }
 
 th {
@@ -729,13 +729,18 @@ th {
 
 td {
     padding: 10px;
-    border: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     text-align: left;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 tr > td:first-child {
-    font-weight: bold;
+    /*font-weight: bold;*/
+}
+
+tr td strong {
+    color: #3185e8;
+    font-size: 14px;
 }
 
 /* 
@@ -790,7 +795,7 @@ and also iPads specifically.
 }
 
 .global {
-    width: 80%;
+    width: 96%;
     margin: 0 auto;
     /*  margin: 5% auto; */
 }
@@ -805,4 +810,44 @@ and also iPads specifically.
             display: inline-block;
             margin: 10px;
             padding: 10px;
+        }
+
+/* select css */
+.multiselect {
+    width: 200px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+    .selectBox select {
+        width: 100%;
+        /*  font-weight: bold; */
+    }
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+    #checkboxes label {
+        display: block;
+        width: 100%;
+        background: #f1f7fa;
+        border-bottom: 1px solid #c3d8e2;
+        text-align: left;
+        padding: 11px;
+    }
+
+        #checkboxes label:hover {
+            background-color: #3185e8;
         }
