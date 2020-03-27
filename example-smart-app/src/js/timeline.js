@@ -275,7 +275,7 @@
 
     function loadData(doSync, sDate, eDate) {
         $("._loader").show();
-        setTimeout(async function () {
+        setTimeout(function () {
 
             currentStartDate = sDate;
             currentEndDate = eDate;
@@ -387,7 +387,7 @@
 
                 }
                 if ($('#dailyTab').is(':empty')) {
-                    $('#dailyTab').append('<div class="noRecordFound">' + '<img src="/_imgs/EmptyStates/default.png"><p>No Record(s) found.</p>' + '</div>');
+                    $('#dailyTab').append('<div class="noRecordFound">' + '<img src="./src/images/no_record.pngg"><p>No Record(s) found.</p>' + '</div>');
                 }
                 else {
                     while (rowCount < minRowCount) {
@@ -473,7 +473,7 @@
                 }
 
                 if ($('#weeklyTab').is(':empty')) {
-                    $('#weeklyTab').append('<div class="noRecordFound">' + '<img src="/_imgs/EmptyStates/default.png"><p>No Record(s) found.</p>' + '</div>');
+                    $('#weeklyTab').append('<div class="noRecordFound">' + '<img src="./src/images/no_record.png"><p>No Record(s) found.</p>' + '</div>');
                 }
                 else {
                     while (rowCount < minRowCount) {
@@ -550,7 +550,7 @@
 
                 }
                 if ($('#monthlyTab').is(':empty')) {
-                    $('#monthlyTab').append('<div class="noRecordFound">' + '<img src="/_imgs/EmptyStates/default.png"><p>No Record(s) found.</p>' + '</div>');
+                    $('#monthlyTab').append('<div class="noRecordFound">' + '<img src="./src/images/no_record.png"><p>No Record(s) found.</p>' + '</div>');
                 }
                 else {
                     while (rowCount < minRowCount) {
@@ -599,7 +599,7 @@
         }, 500);
     }
 
-    async function loadUserDateFormat() {
+    function loadUserDateFormat() {
         var query = "?$select=dateformatstring&$filter=" + encodeURIComponent("systemuserid eq " + userId.replace(/[{}]/g, "")) + "";
 
         return parent.Xrm.WebApi.retrieveMultipleRecords("usersettings", query).then(
@@ -615,7 +615,7 @@
         );
     }
 
-    async function loadAppointments(sdate, edate) {
+    function loadAppointments(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_appointmentemr">'
             + '    <attribute name="activityid" />'
@@ -663,7 +663,7 @@
         );
     }
 
-    async function loadDevices(sdate, edate) {
+    function loadDevices(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_devicerequest">'
             + '    <attribute name="msemr_devicerequestid" />'
@@ -726,7 +726,7 @@
 
     }
 
-    async function loadMedications(sdate, edate) {
+    function loadMedications(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_medicationrequest">'
             + '    <attribute name="msemr_medicationrequestid" />'
@@ -788,7 +788,7 @@
         );
     }
 
-    async function NutritionOrders(sdate, edate) {
+    function NutritionOrders(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_nutritionorder">'
             + '    <attribute name="msemr_nutritionorderid" />'
@@ -833,7 +833,7 @@
         );
     }
 
-    async function Tasks(sdate, edate) {
+    function Tasks(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="task">'
             + '    <attribute name="activityid" />'
@@ -880,7 +880,7 @@
         );
     }
 
-    async function Procedures(sdate, edate) {
+    function Procedures(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_procedurerequest">'
             + '    <attribute name="msemr_procedurerequestid" />'
@@ -929,7 +929,7 @@
         );
     }
 
-    async function Referrals(sdate, edate) {
+    function Referrals(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_referralrequest">'
             + '    <attribute name="msemr_referralrequestid" />'
@@ -976,7 +976,7 @@
         );
     }
 
-    async function Encounter(sdate, edate) {
+    function Encounter(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_encounter">'
             + '    <attribute name="msemr_encounterid" />'
@@ -1030,7 +1030,7 @@
         );
     }
 
-    async function CarePlan(sdate, edate) {
+    function CarePlan(sdate, edate) {
         //var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
         //    + '  <entity name="msemr_careplan">'
         //    + '    <attribute name="msemr_careplanid" />'
@@ -1120,7 +1120,7 @@
 
     }
 
-    async function Allergy(sdate, edate) {
+    function Allergy(sdate, edate) {
         debugger;
         var patient = {}
         patient.patientId = pid;
@@ -1173,7 +1173,7 @@
 
     }
 
-    async function Observation(sdate, edate) {
+    function Observation(sdate, edate) {
         debugger;
         var patient = {}
         patient.patientId = pid;
@@ -1226,7 +1226,7 @@
 
     }
 
-    async function CarePlanGoal(sdate, edate) {
+    function CarePlanGoal(sdate, edate) {
         var query = '<fetch mapping="logical" version="1.0" distinct="false" output-format="xml-platform">'
             + '  <entity name="msemr_careplangoal">'
             + '    <attribute name="createdon" />'
