@@ -1316,7 +1316,7 @@
         patient.getRelationship = false;
 
         $.ajax({
-            url: "https://mazikcarewebapicrm.azurewebsites.net/api/PatientChart/getPatientDetails",
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientDetails",
             method: "POST",
             async: false,
             dataType: "json",
@@ -1540,7 +1540,7 @@
         return dates;
     }
 
-    
+
 
     function getMinMaxDates() {
         var MinMaxDates = {
@@ -1548,7 +1548,7 @@
             max: moment($('#txtEndDate').datepicker('getDate'))
         };
         return MinMaxDates;
-    }    
+    }
 
     function enableDisableBackForward() {
         var showPrev = false;
