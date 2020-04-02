@@ -55,7 +55,7 @@
             else
                 eventSelect.innerText = checkedEvents.length + " out of " + ev.length + " events " + arrow
 
-        //loadData(false);
+        LoadTimeline();
     });
 
     
@@ -82,9 +82,8 @@
             //event = $('select').val() == null ? '' : $('select').val();
             //var fltrData = list.filter(function (e) { return this.indexOf(e.type.toString()) > -1; }, checkedEvents);
             list.sort(dateSort);
-            
             for (var i = 0; i < list.length; i++) {
-                var date = new Date(list[0].date)
+                var date = new Date(list[i].date)
                 YearList.push(date.getFullYear());                
             }
 
@@ -155,8 +154,8 @@
                     eventSelect.innerText = "All Years " + arrow;
                 else
                     eventSelect.innerText = checkedYears.length + " out of " + ev.length + " events " + arrow
-
-            //loadData(false);
+            
+            LoadTimeline();
         });
 
 
@@ -164,7 +163,7 @@
     }
 
     function LoadTimeline() {
-
+        debugger;
         $("#loading").show();
         $("#timelinecontrolnew").hide()
         $("#timeline").html("");
@@ -186,7 +185,7 @@
                 var entity = list[i].entity;
                 var year = date.getFullYear();
                 var month = monthNames[date.getMonth()];
-                var day = date.getDay();
+                var day = date.getDate();
 
                 if (year == item) {
                     html += '<div class="timeline__box"><div class="timeline__date">' +
@@ -206,7 +205,7 @@
         $("#timelinecontrolnew").show();
     }
 
-    function CarePlan() {        
+    function CarePlan() {
         var patient = {}
         patient.patientId = pid;
         patient.startDate = currentStartDate;
