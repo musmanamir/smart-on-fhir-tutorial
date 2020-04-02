@@ -219,9 +219,6 @@
 
 
     function CreatePatient(patientid) {
-
-        //var patientID = $("#txtPatientID").val();
-        debugger;
         var data = {}
         var patient = {}
 
@@ -230,6 +227,7 @@
         patient.lastName = $("#lname").text();
         patient.phone = $("#phone").text();
         patient.email = $("#email").text();
+        patient.dateOfBirth = $("#birthdate").text();
 
         data.patient = patient;
 
@@ -264,8 +262,7 @@
 
     }
 
-    function CreateCarePlan(id, patientid, title, desc, startdate, enddate) {
-        debugger;
+    function CreateCarePlan(id, patientid, title, desc, startdate, enddate) {        
         var data = {}
         var patientCarePlan = {}
         patientCarePlan.Externalemrid = id;
@@ -306,7 +303,6 @@
     }
 
     function CreateAllergy(id, patientid, title, startdate) {
-        debugger;
         var data = {}
         var patientAllergy = {}
         patientAllergy.Externalemrid = id;
@@ -345,7 +341,6 @@
     }
 
     function CreateObservation(id, patientid, title, IssuedDate) {
-        debugger;
         var data = {}
         var patientObservation = {}
         patientObservation.Externalemrid = id;
