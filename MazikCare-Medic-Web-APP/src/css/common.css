@@ -117,20 +117,22 @@ body {
         min-width: 140px;
     }
 
-    .searchControl #eventSelect {
+    .searchControl .eventSelect {
         padding: 10px 5px;
         border: 2px solid #ccc;
         box-sizing: border-box;
-        display: inline-flex;
+        /* display: inline-flex; */
         font-family: "Roboto", sans-serif;
         color: #656565;
         font-size: 14px;
+        width: 250px;
+        background-color:white;
     }
 
-    .searchControl #checkboxEventList {
+    .searchControl .checkboxEventList {
         border: 2px solid #ccc;
         border-radius: 10px;
-        width: 10rem;
+        width: 250px;
         background: white;
         position: absolute;
         z-index: 1000;
@@ -141,8 +143,8 @@ body {
         text-align: left;
     }
 
-        .searchControl #checkboxEventList div {
-            background: #f1f7fa;
+        .searchControl .checkboxEventList div {
+            background: white;
             border-bottom: 1px solid #c3d8e2;
             text-align: left;
             padding: 11px;
@@ -707,7 +709,7 @@ button.ui-datepicker-trigger {
     padding: 5px;
     width: 290px;
     margin: 0 auto;
-    display: table;
+    display: initial;
 }
 
 table {
@@ -720,7 +722,7 @@ table {
 
 /* Zebra striping */
 tr:nth-of-type(odd) {
-    background: #f1f7fa;
+    /*background: #f1f7fa;*/
 }
 
 th {
@@ -735,19 +737,21 @@ th {
 }
 
 td {
-    padding: 10px;
-    /* border-bottom: 1px solid #ccc; */
+    padding: 20px;
     text-align: left;
     font-size: 16px;
+    border-bottom: 2px solid black;
+    color: black;
 }
 
 tr > td:first-child {
-    /*font-weight: bold;*/
+    color: black;
+    border-right: 2px solid black;
 }
 
 tr td strong {
-    color: #3185e8;
-    font-size: 14px;
+    color: black;
+    font-weight:bold;
 }
 
 /* 
@@ -808,7 +812,7 @@ and also iPads specifically.
 }
 
     .global ul {
-        background: #fff;
+        background: transparent;
         text-align: center;
     }
 
@@ -858,3 +862,65 @@ and also iPads specifically.
         #checkboxes label:hover {
             background-color: #3185e8;
         }
+
+
+.patientdetail {
+    width: 20%;
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    height: 700px;
+    max-height: 700px;
+    border-right: 2px solid;
+}
+
+    .patientdetail table {
+        width:100%;
+    }
+
+.patietnTimeline {
+    padding: 20px;
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+
+}
+
+.timelinecontrolnew {    
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    max-height: 600px;
+    overflow: auto;
+}
+
+.footer {
+    text-align: center;
+    background-color: lightgray;
+}
+
+    .footer span {
+        padding:20px;
+    }
+
+.MainHeading {
+    border-bottom: 2px solid black;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: #0d87e5;
+    color: white;
+}
+
+.patientdetailheading {
+    width: 20%;
+    padding: 20px;
+    display: inline-block;
+    vertical-align: top;
+    border-right: 2px solid;
+}
+.patietnTimelineheading {
+    padding: 20px;
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+}
