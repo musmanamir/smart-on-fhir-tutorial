@@ -173,8 +173,8 @@
 
         for (var j = 0; j < checkedYears.length; j++) {
             var item = checkedYears[j];
-            html += '<div class="timeline__group"><span class="timeline__year">' + item + '</span>';
-
+            html = '<div class="timeline__group" id="' + item + '"><span class="timeline__year" >' + item + '</span></div>';
+            $("#timeline").append(html);
             for (var i = 0; i < filterdata.length; i++) {
 
                 var date = new Date(filterdata[i].date)
@@ -187,19 +187,60 @@
                 var day = date.getDate();
 
                 if (year == item) {
-                    html += '<div class="timeline__box"><div class="timeline__date">' +
-                        '<span class="timeline__day">' + day + '</span>' +
-                        '<span class="timeline__month">' + month + '</span></div>' +
-                        '<div class="timeline__post">' +
-                        '<div class="timeline__content"><p>' + name +
-                        '</p></div></div></div>';
+                    debugger;
+                    var yeardivcount = $("#" + year).length;
+                    if (yeardivcount > 0) {
+                        var thistimelineboxcount = $("#" + year).find(".timeline__box").length;
+                        if (thistimelineboxcount > 0) {
+
+                            var daydivcount = $("#" + year).find(".timeline__box").find("." + day).length;
+                            var daydivmonth = $("#" + year).find(".timeline__box").find("." + month).length;
+
+                            if (daydivcount > 0 && daydivmonth > 0) {
+                                html = '<div class="timeline__box">' +
+                                    '<div class="timeline__post">' +
+                                    '<div class="timeline__content"> ' +
+                                    '<span class="timelineentity">' + entity + '</span>' +
+                                    '<p> ' + name + '</p>' +
+                                    '</div></div></div>';
+                            }
+                            else {
+                                html = '<div class="timeline__box"><div class="timeline__date">' +
+                                    '<span class="timeline__day ' + day + '">' + day + '</span>' +
+                                    '<span class="timeline__month ' + month + '">' + month + '</span></div>' +
+                                    '<div class="timeline__post">' +
+                                    '<div class="timeline__content"> ' +
+                                    '<span class="timelineentity">' + entity + '</span>' +
+                                    '<p> ' + name + '</p>' +
+                                    '</div></div></div>';
+                            }
+                        }
+                        else {
+                            html = '<div class="timeline__box"><div class="timeline__date">' +
+                                '<span class="timeline__day ' + day + '">' + day + '</span>' +
+                                '<span class="timeline__month ' + month + '">' + month + '</span></div>' +
+                                '<div class="timeline__post">' +
+                                '<div class="timeline__content"> ' +
+                                '<span class="timelineentity">' + entity + '</span>' +
+                                '<p> ' + name + '</p>' +
+                                '</div></div></div>';
+                        }
+                    }
+                    else {
+                        html = '<div class="timeline__box"><div class="timeline__date">' +
+                            '<span class="timeline__day ' + day + '">' + day + '</span>' +
+                            '<span class="timeline__month ' + month + '">' + month + '</span></div>' +
+                            '<div class="timeline__post">' +
+                            '<div class="timeline__content"> ' +
+                            '<span class="timelineentity">' + entity + '</span>' +
+                            '<p> ' + name + '</p>' +
+                            '</div></div></div>';
+                    }                    
                 }
+
+                $("#" + year).append(html);
             }
-
-            html += '</div>';
         }
-
-        $("#timeline").html(html);
 
         $(".timeline__group").each(function () {
             var timelineboxcount = $(this).find(".timeline__box").length;
@@ -249,7 +290,7 @@
                         item.dateTime = moment.utc(dataSet.STartDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 9;
-                    item.entity = "msemr_careplan";
+                    item.entity = "Care Plan";
                     list.push(item);
                 };
                 return Promise.resolve();
@@ -294,7 +335,7 @@
                         item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 11;
-                    item.entity = "msemr_allergyintolerance";
+                    item.entity = "Allergy Intolerance";
                     list.push(item);
                 };
                 return Promise.resolve();
@@ -341,7 +382,7 @@
                         item.dateTime = moment.utc(dataSet.IssuedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 12;
-                    item.entity = "msemr_observation";
+                    item.entity = "Observation";
                     list.push(item);
                 };
                 return Promise.resolve();

@@ -924,3 +924,9 @@ and also iPads specifically.
     display: inline-block;
     vertical-align: top;
 }
+
+.timelineentity {
+    font-size: 17px;
+    font-weight: bold;
+    color: #0d87e5;
+}
