@@ -163,12 +163,11 @@
     }
 
     function LoadTimeline() {
-        debugger;
         $("#loading").show();
         $("#timelinecontrolnew").hide()
         $("#timeline").html("");
 
-        list = list.filter(function (e) { return this.indexOf(e.type.toString()) > -1; }, checkedEvents);
+        var filterdata = list.filter(function (e) { return this.indexOf(e.type.toString()) > -1; }, checkedEvents);
 
         var html = "";
 
@@ -176,13 +175,13 @@
             var item = checkedYears[j];
             html += '<div class="timeline__group"><span class="timeline__year">' + item + '</span>';
 
-            for (var i = 0; i < list.length; i++) {
+            for (var i = 0; i < filterdata.length; i++) {
 
-                var date = new Date(list[i].date)
-                var id = list[i].id;
-                var name = list[i].name;
-                var type = list[i].type;
-                var entity = list[i].entity;
+                var date = new Date(filterdata[i].date)
+                var id = filterdata[i].id;
+                var name = filterdata[i].name;
+                var type = filterdata[i].type;
+                var entity = filterdata[i].entity;
                 var year = date.getFullYear();
                 var month = monthNames[date.getMonth()];
                 var day = date.getDate();
@@ -201,6 +200,17 @@
         }
 
         $("#timeline").html(html);
+
+        $(".timeline__group").each(function () {
+            var timelineboxcount = $(this).find(".timeline__box").length;
+            if (timelineboxcount <= 0) {
+                $(this).hide();
+            }
+            else {
+                $(this).show();
+            }
+        });
+
         $("#loading").hide();
         $("#timelinecontrolnew").show();
     }
