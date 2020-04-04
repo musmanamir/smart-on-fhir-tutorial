@@ -5,7 +5,7 @@
 
     var currentStartDate;
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
-    var checkedEvents = ['9', '11', '12'];
+    var checkedEvents = ['8', '9', '11', '12'];
     var checkedYears = [];
     var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -68,6 +68,9 @@
             if (doSync) {
                 //loadUserDateFormat();
                 list = [];
+                if (checkedEvents.indexOf('8') > -1) {
+                    Condition();
+                }
                 if (checkedEvents.indexOf('9') > -1) {
                     CarePlan();
                 }
@@ -187,7 +190,6 @@
                 var day = date.getDate();
 
                 if (year == item) {
-                    debugger;
                     var yeardivcount = $("#" + year).length;
                     if (yeardivcount > 0) {
                         var thistimelineboxcount = $("#" + year).find(".timeline__box").length;
@@ -254,6 +256,51 @@
 
         $("#loading").hide();
         $("#timelinecontrolnew").show();
+    }
+
+    function Condition() {       
+        var patient = {}
+        patient.patientId = pid;
+        patient.startDate = currentStartDate;
+        patient.endDate = currentEndDate;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientCondition",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(patient),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                for (var i = 0; i < data.data.records.length; i++) {
+                    var dataSet = data.data.records[i];
+                    var item = {};
+
+                    if (dataSet.hasOwnProperty('CarePlanID')) {
+                        item.id = dataSet.CarePlanID;
+                    }
+                    item.name = dataSet.Title;
+
+                    if (dataSet.hasOwnProperty('STartDate')) {
+                        item.date = moment.utc(dataSet.STartDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.STartDate).format('YYYY-MM-DD HH:mm:ss');
+                    }
+                    item.type = 8;
+                    item.entity = "Condition";
+                    list.push(item);
+                };
+                return Promise.resolve();
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function CarePlan() {

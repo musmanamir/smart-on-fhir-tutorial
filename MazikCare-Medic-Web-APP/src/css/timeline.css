@@ -10,7 +10,7 @@
         content: "";
         width: 4px;
         height: 100%;
-        background-color: #0d87e5;
+        background-color: #70c1ff;
         position: absolute;
         top: 0;
     }
@@ -30,6 +30,7 @@
     position: absolute;
     left: 0;
     top: 0;
+    border-radius: 5px;
 }
 
 .timeline__box {
@@ -42,12 +43,12 @@
 
     .timeline__box:before {
         content: "";
-        width: 100%;
+        /*width: 100%;
         height: 2px;
-        background-color: #0d87e5;
+        background-color: #70c1ff;
         position: absolute;
         left: 0;
-        z-index: -1;
+        z-index: -1;*/
     }
 
 .timeline__date {
@@ -58,7 +59,7 @@
     padding: .5rem 1.5rem;
     text-align: center;
     color: #fff;
-    background-color: #0d87e5;
+    background-color: #70c1ff;
 }
 
 .timeline__day {
@@ -74,12 +75,9 @@
 }
 
 .timeline__post {
-    padding: 1.5rem 2rem;
-    border-radius: 2px;
-    border-left: 3px solid #0d87e5;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .12), 0 1px 2px 0 rgba(0, 0, 0, .24);
-    background-color: var(--uiTimelineSecondaryColor);
-}
+    border-radius: 5px;
+    /* box-shadow: none!important; */
+    background: #fff;}
 
 @media screen and (min-width: 641px) {
 
@@ -132,7 +130,7 @@
 
 .timeline {
     --timelineMainColor: #4557bb;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /*
@@ -175,6 +173,7 @@ p {
 
     p:last-child {
         margin-bottom: 0;
+        color:#000;
     }
 
 .page {

@@ -24,8 +24,7 @@
 
                 $.when(pt, obv).fail(onError);
 
-                $.when(pt, obv).done(function (patient, obv) {
-
+                $.when(pt, obv).done(function (patient, obv) {                    
                     $("#patietid").val(patient.id);
                     
                     var byCodes = smart.byCodes(obv, 'code');
@@ -116,7 +115,28 @@
                         }                        
                     });
 
+                    var cond = smart.patient.api.fetchAll({
+                        type: 'Condition',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
 
+                    $.when(cond).done(function (condition) {                       
+                        if (condition != null) {
+                            if (condition.length > 0) {
+                                for (var i = 0; i <= condition.length; i++) {
+                                    if (condition[i] != null) {
+                                        if (condition[i] != undefined) {
+                                            var title = condition[i].code.coding[0].display;
+                                            var recordeddate = condition[i].dateRecorded;
+                                            CreateCondition(condition[i].id, $("#CRMpatietid").val(), "Condition - " + title, recordeddate);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
 
                     var cp = smart.patient.api.fetchAll({
                         type: 'CarePlan',
@@ -260,6 +280,44 @@
         });
 
 
+    }
+
+    function CreateCondition(id, patientid, title, startdate) {
+        var data = {}
+        var patientCondition = {}
+        patientCondition.Externalemrid = id;
+        patientCondition.Title = title;
+        patientCondition.RecordedDate = startdate;
+        patientCondition.PatientID = patientid;
+
+        data.patientCondition = patientCondition;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientConditionCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+                    
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function CreateCarePlan(id, patientid, title, desc, startdate, enddate) {        
