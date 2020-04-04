@@ -129,7 +129,7 @@
                                     if (condition[i] != null) {
                                         if (condition[i] != undefined) {
                                             var title = condition[i].code.coding[0].display;
-                                            var recordeddate = condition[i].dateRecorded;
+                                            var recordeddate = condition[i].onsetDateTime;
                                             CreateCondition(condition[i].id, $("#CRMpatietid").val(), "Condition - " + title, recordeddate);
                                         }
                                     }
