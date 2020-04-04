@@ -282,14 +282,14 @@
                     var dataSet = data.data.records[i];
                     var item = {};
 
-                    if (dataSet.hasOwnProperty('CarePlanID')) {
-                        item.id = dataSet.CarePlanID;
+                    if (dataSet.hasOwnProperty('ConditionID')) {
+                        item.id = dataSet.ConditionID;
                     }
                     item.name = dataSet.Title;
 
-                    if (dataSet.hasOwnProperty('STartDate')) {
-                        item.date = moment.utc(dataSet.STartDate).format('MM/DD/YYYY');
-                        item.dateTime = moment.utc(dataSet.STartDate).format('YYYY-MM-DD HH:mm:ss');
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 8;
                     item.entity = "Condition";
