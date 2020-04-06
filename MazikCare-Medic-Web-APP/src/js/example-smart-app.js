@@ -153,7 +153,7 @@
                                     if (procedure[i] != null) {
                                         if (procedure[i] != undefined) {
                                             var title = procedure[i].code.coding[0].display;
-                                            var recordeddate = procedure[i].onsetDateTime;
+                                            var recordeddate = procedure[i].performedPeriod.start;
                                             CreateProcedure(procedure[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
                                         }
                                     }
@@ -306,6 +306,44 @@
 
     }
 
+    function CreateProcedure(id, patientid, title, startdate) {
+        var data = {}
+        var patientProcedure = {}
+        patientProcedure.Externalemrid = id;
+        patientProcedure.Title = title;
+        patientProcedure.RecordedDate = startdate;
+        patientProcedure.PatientID = patientid;
+
+        data.patientProcedure = patientProcedure;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientProcedureCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+                    
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
     function CreateCondition(id, patientid, title, startdate) {
         var data = {}
         var patientCondition = {}
@@ -331,7 +369,7 @@
             },
             success: function (data) {
                 if (data.data.records != null) {
-                    
+
                     //$("#timeline").show();
 
                     //timeline();
