@@ -138,6 +138,30 @@
                         }
                     });
 
+                    var proc = smart.patient.api.fetchAll({
+                        type: 'Procedure',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(proc).done(function (procedure) {
+                        debugger;
+                        if (procedure != null) {
+                            if (procedure.length > 0) {
+                                for (var i = 0; i <= procedure.length; i++) {
+                                    if (procedure[i] != null) {
+                                        if (procedure[i] != undefined) {
+                                            var title = procedure[i].code.coding[0].display;
+                                            var recordeddate = procedure[i].onsetDateTime;
+                                            CreateProcedure(procedure[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
                     var cp = smart.patient.api.fetchAll({
                         type: 'CarePlan',
                         query: {
