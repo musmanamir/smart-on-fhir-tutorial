@@ -183,17 +183,9 @@
                                 for (var i = 0; i <= encounter.length; i++) {
                                     if (encounter[i] != null) {
                                         if (encounter[i] != undefined) {
-                                            var title = encounter[i].code.coding[0].display;
-                                            var recordeddate = '';
-
-                                            if (encounter[i].hasOwnProperty("performedDateTime")) {
-                                                recordeddate = encounter[i].performedDateTime;
-                                            }
-                                            if (encounter[i].hasOwnProperty("performedPeriod")) {
-                                                recordeddate = encounter[i].performedPeriod.start;
-                                            }
-
-                                            CreateEncounter(encounter[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
+                                            var title = encounter[i].type[0].text;
+                                            var recordeddate = encounter[i].period.start;
+                                            CreateEncounter(encounter[i].id, $("#CRMpatietid").val(), "Encounter - " + title, recordeddate);
                                         }
                                     }
                                 }
