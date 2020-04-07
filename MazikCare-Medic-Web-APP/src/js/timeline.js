@@ -288,8 +288,8 @@
                     var dataSet = data.data.records[i];
                     var item = {};
 
-                    if (dataSet.hasOwnProperty('EncounterID')) {
-                        item.id = dataSet.EncounterID;
+                    if (dataSet.hasOwnProperty('EncounterId')) {
+                        item.id = dataSet.EncounterId;
                     }
                     item.name = dataSet.Title;
 
@@ -298,7 +298,7 @@
                         item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
                     }
                     item.type = 6;
-                    item.entity = "Procedure";
+                    item.entity = "Encounter";
                     list.push(item);
                 };
                 return Promise.resolve();
