@@ -5,7 +5,7 @@
 
     var currentStartDate;
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
-    var checkedEvents = ['7', '8', '9', '11', '12'];
+    var checkedEvents = ['6', '7', '8', '9', '11', '12'];
     var checkedYears = [];
     var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -68,6 +68,9 @@
             if (doSync) {
                 //loadUserDateFormat();
                 list = [];
+                if (checkedEvents.indexOf('6') > -1) {
+                    Encounter();
+                }
                 if (checkedEvents.indexOf('7') > -1) {
                     Procedure();
                 }
@@ -259,6 +262,51 @@
 
         $("#loading").hide();
         $("#timelinecontrolnew").show();
+    }
+
+    function Encounter() {
+        var patient = {}
+        patient.patientId = pid;
+        patient.startDate = currentStartDate;
+        patient.endDate = currentEndDate;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientEncounter",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(patient),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                for (var i = 0; i < data.data.records.length; i++) {
+                    var dataSet = data.data.records[i];
+                    var item = {};
+
+                    if (dataSet.hasOwnProperty('EncounterID')) {
+                        item.id = dataSet.EncounterID;
+                    }
+                    item.name = dataSet.Title;
+
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
+                    }
+                    item.type = 6;
+                    item.entity = "Procedure";
+                    list.push(item);
+                };
+                return Promise.resolve();
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function Procedure() {

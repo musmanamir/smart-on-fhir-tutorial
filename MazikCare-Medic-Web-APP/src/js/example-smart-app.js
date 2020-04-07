@@ -146,7 +146,6 @@
                     });
 
                     $.when(proc).done(function (procedure) {
-                        debugger;
                         if (procedure != null) {
                             if (procedure.length > 0) {
                                 for (var i = 0; i <= procedure.length; i++) {
@@ -163,6 +162,38 @@
                                             }
 
                                             CreateProcedure(procedure[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    var enco = smart.patient.api.fetchAll({
+                        type: 'Encounter',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(enco).done(function (encounter) {
+                        debugger;
+                        if (procedure != null) {
+                            if (encounter.length > 0) {
+                                for (var i = 0; i <= encounter.length; i++) {
+                                    if (encounter[i] != null) {
+                                        if (encounter[i] != undefined) {
+                                            var title = encounter[i].code.coding[0].display;
+                                            var recordeddate = '';
+
+                                            if (encounter[i].hasOwnProperty("performedDateTime")) {
+                                                recordeddate = encounter[i].performedDateTime;
+                                            }
+                                            if (encounter[i].hasOwnProperty("performedPeriod")) {
+                                                recordeddate = encounter[i].performedPeriod.start;
+                                            }
+
+                                            CreateEncounter(encounter[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
                                         }
                                     }
                                 }
@@ -312,6 +343,44 @@
         });
 
 
+    }
+
+    function CreateEncounter(id, patientid, title, startdate) {
+        var data = {}
+        var patientEncounter = {}
+        patientEncounter.Externalemrid = id;
+        patientEncounter.Title = title;
+        patientEncounter.RecordedDate = startdate;
+        patientEncounter.PatientID = patientid;
+
+        data.patientEncounter = patientEncounter;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientEncounterCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function CreateProcedure(id, patientid, title, startdate) {
