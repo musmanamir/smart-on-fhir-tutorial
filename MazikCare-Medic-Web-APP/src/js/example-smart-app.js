@@ -177,7 +177,6 @@
                     });
 
                     $.when(enco).done(function (encounter) {
-                        debugger;
                         if (encounter != null) {
                             if (encounter.length > 0) {
                                 for (var i = 0; i <= encounter.length; i++) {
@@ -186,6 +185,30 @@
                                             var title = encounter[i].type[0].text;
                                             var recordeddate = encounter[i].period.start;
                                             CreateEncounter(encounter[i].id, $("#CRMpatietid").val(), "Encounter - " + title, recordeddate);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    var devi = smart.patient.api.fetchAll({
+                        type: 'Device',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(devi).done(function (device) {
+                        debugger;
+                        if (device != null) {
+                            if (device.length > 0) {
+                                for (var i = 0; i <= device.length; i++) {
+                                    if (device[i] != null) {
+                                        if (device[i] != undefined) {
+                                            var title = device[i].type[0].text;
+                                            var recordeddate = device[i].manufactureDate;
+                                            CreateDevice(device[i].id, $("#CRMpatietid").val(), "Device - " + title, recordeddate);
                                         }
                                     }
                                 }
@@ -335,6 +358,44 @@
         });
 
 
+    }
+
+    function CreateDevice(id, patientid, title, startdate) {
+        var data = {}
+        var patientDevice = {}
+        patientDevice.Externalemrid = id;
+        patientDevice.Title = title;
+        patientDevice.RecordedDate = startdate;
+        patientDevice.PatientID = patientid;
+
+        data.patientDevice = patientDevice;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientDeviceCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function CreateEncounter(id, patientid, title, startdate) {

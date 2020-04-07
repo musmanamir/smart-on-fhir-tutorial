@@ -68,6 +68,9 @@
             if (doSync) {
                 //loadUserDateFormat();
                 list = [];
+                if (checkedEvents.indexOf('5') > -1) {
+                    Device();
+                }
                 if (checkedEvents.indexOf('6') > -1) {
                     Encounter();
                 }
@@ -262,6 +265,51 @@
 
         $("#loading").hide();
         $("#timelinecontrolnew").show();
+    }
+
+    function Device() {
+        var patient = {}
+        patient.patientId = pid;
+        patient.startDate = currentStartDate;
+        patient.endDate = currentEndDate;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientDevice",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(patient),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                for (var i = 0; i < data.data.records.length; i++) {
+                    var dataSet = data.data.records[i];
+                    var item = {};
+
+                    if (dataSet.hasOwnProperty('DeviceID')) {
+                        item.id = dataSet.DeviceID;
+                    }
+                    item.name = dataSet.Title;
+
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
+                    }
+                    item.type = 5;
+                    item.entity = "Device";
+                    list.push(item);
+                };
+                return Promise.resolve();
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
     }
 
     function Encounter() {
