@@ -153,7 +153,15 @@
                                     if (procedure[i] != null) {
                                         if (procedure[i] != undefined) {
                                             var title = procedure[i].code.coding[0].display;
-                                            var recordeddate = procedure[i].performedPeriod.start;
+                                            var recordeddate = '';
+
+                                            if (procedure[i].hasOwnProperty("performedDateTime")) {
+                                                recordeddate = procedure[i].performedDateTime;
+                                            }
+                                            if (procedure[i].hasOwnProperty("performedPeriod")) {
+                                                recordeddate = procedure[i].performedPeriod.start;
+                                            }
+
                                             CreateProcedure(procedure[i].id, $("#CRMpatietid").val(), "Procedure - " + title, recordeddate);
                                         }
                                     }
