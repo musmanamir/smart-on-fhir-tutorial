@@ -178,7 +178,7 @@
 
                     $.when(enco).done(function (encounter) {
                         debugger;
-                        if (procedure != null) {
+                        if (encounter != null) {
                             if (encounter.length > 0) {
                                 for (var i = 0; i <= encounter.length; i++) {
                                     if (encounter[i] != null) {
