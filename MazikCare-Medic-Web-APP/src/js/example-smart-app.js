@@ -206,8 +206,8 @@
                                 for (var i = 0; i <= device.length; i++) {
                                     if (device[i] != null) {
                                         if (device[i] != undefined) {
-                                            var title = device[i].type[0].text;
-                                            var recordeddate = device[i].manufactureDate;
+                                            var title = device[i].type.text;
+                                            var recordeddate = device[i].meta.lastUpdated;
                                             CreateDevice(device[i].id, $("#CRMpatietid").val(), "Device - " + title, recordeddate);
                                         }
                                     }
