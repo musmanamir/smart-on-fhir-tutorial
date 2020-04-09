@@ -5,7 +5,7 @@
 
     var currentStartDate;
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
-    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12'];
+    var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13'];
     var checkedYears = [];
     var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
     var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
@@ -73,10 +73,7 @@
                 }
                 if (checkedEvents.indexOf('6') > -1) {
                     Encounter();
-                }
-                if (checkedEvents.indexOf('7') > -1) {
-                    Procedure();
-                }
+                }                
                 if (checkedEvents.indexOf('8') > -1) {
                     Condition();
                 }
@@ -88,6 +85,12 @@
                 }
                 if (checkedEvents.indexOf('12') > -1) {
                     Observation();
+                }
+                if (checkedEvents.indexOf('7') > -1) {
+                    Procedure();
+                }
+                if (checkedEvents.indexOf('13') > -1) {
+                    ProcedureRequest();
                 }
             }
 
@@ -392,6 +395,51 @@
                     }
                     item.type = 7;
                     item.entity = "Procedure";
+                    list.push(item);
+                };
+                return Promise.resolve();
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
+    function ProcedureRequest() {
+        var patient = {}
+        patient.patientId = pid;
+        patient.startDate = currentStartDate;
+        patient.endDate = currentEndDate;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "getPatientProcedureRequest",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(patient),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                for (var i = 0; i < data.data.records.length; i++) {
+                    var dataSet = data.data.records[i];
+                    var item = {};
+
+                    if (dataSet.hasOwnProperty('ProcedureRequestID')) {
+                        item.id = dataSet.ProcedureRequestID;
+                    }
+                    item.name = dataSet.Title;
+
+                    if (dataSet.hasOwnProperty('RecordedDate')) {
+                        item.date = moment.utc(dataSet.RecordedDate).format('MM/DD/YYYY');
+                        item.dateTime = moment.utc(dataSet.RecordedDate).format('YYYY-MM-DD HH:mm:ss');
+                    }
+                    item.type = 13;
+                    item.entity = "ProcedureRequest";
                     list.push(item);
                 };
                 return Promise.resolve();

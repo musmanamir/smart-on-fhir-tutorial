@@ -169,6 +169,29 @@
                         }
                     });
 
+                    var procReq = smart.patient.api.fetchAll({
+                        type: 'ProcedureRequest',
+                        query: {
+                            patient: patient.id
+                        }
+                    });
+
+                    $.when(procReq).done(function (procedureRequest) {
+                        if (procedureRequest != null) {
+                            if (procedureRequest.length > 0) {
+                                for (var i = 0; i <= procedureRequest.length; i++) {
+                                    if (procedureRequest[i] != null) {
+                                        if (procedureRequest[i] != undefined) {
+                                            var title = procedureRequest[i].code.coding[0].display;
+                                            var recordeddate = procedureRequest[i].scheduledPeriod.start;                                            
+                                            CreateProcedureRequest(procedureRequest[i].id, $("#CRMpatietid").val(), "procedureRequest - " + title, recordeddate);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+
                     var enco = smart.patient.api.fetchAll({
                         type: 'Encounter',
                         query: {
@@ -462,6 +485,44 @@
             success: function (data) {
                 if (data.data.records != null) {
                     
+                    //$("#timeline").show();
+
+                    //timeline();
+                }
+
+            },
+            error: function () {
+                console.log("error");
+            }
+        });
+    }
+
+    function CreateProcedureRequest(id, patientid, title, startdate) {
+        var data = {}
+        var patientProcedureRequest = {}
+        patientProcedureRequest.Externalemrid = id;
+        patientProcedureRequest.Title = title;
+        patientProcedureRequest.RecordedDate = startdate;
+        patientProcedureRequest.PatientID = patientid;
+
+        data.patientProcedureRequest = patientProcedureRequest;
+
+        $.ajax({
+            url: $("#hdnPatientChartAPIURL").val() + "CreatePatientProcedureRequestCRM",
+            method: "POST",
+            async: false,
+            dataType: "json",
+            data: JSON.stringify(data),
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            cache: false,
+            beforeSend: function (xhr) {
+                /* Authorization header */
+                xhr.setRequestHeader("Authorization", $("#AuthorizationToken").val());
+            },
+            success: function (data) {
+                if (data.data.records != null) {
+
                     //$("#timeline").show();
 
                     //timeline();
