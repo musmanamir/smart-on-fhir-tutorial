@@ -136,7 +136,7 @@
                                 }
                             }
                         }
-                    });
+                    });                    
 
                     var proc = smart.patient.api.fetchAll({
                         type: 'Procedure',
