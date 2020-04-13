@@ -338,7 +338,6 @@
         $('#hdl').html(p.hdl);
     };
 
-
     function CreatePatient(patientid) {
         var data = {}
         var patient = {}

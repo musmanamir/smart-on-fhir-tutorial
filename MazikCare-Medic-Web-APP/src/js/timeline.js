@@ -7,19 +7,12 @@
     var currentEndDate = moment(new Date()).format('MM/DD/YYYY');
     var checkedEvents = ['5', '6', '7', '8', '9', '11', '12', '13'];
     var checkedYears = [];
-    var pid = $("#CRMpatietid").val(); // parent.Xrm.Page.data.entity.getId();
-    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
-    var userId = ""; // parent.Xrm.Page.context.getUserId();
-    var userDateFormat = 'MM/DD/YYYY';
-    var isChanged = false;
-    var defaultName = "NA";
+    var pid = $("#CRMpatietid").val();
+    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     if (pid == '' || pid == null) {
         $('.timelinecontrolnew').hide();
         $('.errorMessage').show();
-
     } else {
         $('.errorMessage').hide();
         $('.timelinecontrolnew').show();
@@ -57,8 +50,6 @@
 
         LoadTimeline();
     });
-
-    
 
     // FUNCTIONS
 
@@ -727,6 +718,5 @@
         if (s < e) return -1;
         return 0;
     };
-
 
 }
