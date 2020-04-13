@@ -100,6 +100,7 @@
                     });
 
                     $.when(alrgy).done(function (Allergy) {
+                        
                         if (Allergy != null) {
                             if (Allergy.length > 0) {
                                 for (var i = 0; i <= Allergy.length; i++) {
@@ -122,7 +123,8 @@
                         }
                     });
 
-                    $.when(cond).done(function (condition) {                       
+                    $.when(cond).done(function (condition) {        
+                        debugger;
                         if (condition != null) {
                             if (condition.length > 0) {
                                 for (var i = 0; i <= condition.length; i++) {
